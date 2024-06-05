@@ -1,0 +1,24 @@
+// @font-face {
+//   font-family: "Jura";
+//   src: local("Jura"), url("../../assets/fonts/Jura-VariableFont_wght.ttf") format("opentype");
+// }
+
+.container {
+  background-color: #15272b;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box {
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.textBlock {
+  max-width: 600px;
+}
