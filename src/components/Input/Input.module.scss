@@ -1,0 +1,28 @@
+.inpt {
+  background-color: #325F58;
+  border-radius: 22px;
+  width: 400px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 30px;
+
+  
+}
+
+.inputField {
+  // text-decoration: none;
+  all: unset;
+  width: 100%;
+  height: 40%;
+  // padding: 0;
+  // box-sizing: border-box;
+  // background-color: #325F58;
+  text-align: center;
+}
+
+.inputField::placeholder {
+  color: #8BC4AD;
+}

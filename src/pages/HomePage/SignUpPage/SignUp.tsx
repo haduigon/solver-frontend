@@ -2,8 +2,9 @@
 import styles from '../HomePage.module.scss';
 import pic from '../../../assets/img/panda2.svg'
 import Button from '../../../components/Button';
+import Input from '../../../components/Input';
 
-const LoginPage = () => {
+const SignUpPage = () => {
   return (
     <div className={styles.container}>
       <div className={styles.box}>
@@ -14,10 +15,10 @@ const LoginPage = () => {
           Sign up page 
         </div>
         <div className='mb-36'>
-          <Button name='email' />
+          <Input name='email' type='email'/>
         </div>
         <div className='mb-36'>
-        <Button name='password' />
+        <Input name='password' type='password'/>
         </div>
         <div >
         <Button name='create user' />
@@ -27,4 +28,4 @@ const LoginPage = () => {
   )
 }
 
-export default LoginPage;
+export default SignUpPage;

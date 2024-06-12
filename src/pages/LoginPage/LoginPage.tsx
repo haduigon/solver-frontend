@@ -2,6 +2,7 @@
 import styles from '../HomePage/HomePage.module.scss';
 import pic from '../../assets/img/panda2.svg'
 import Button from '../../components/Button';
+import Input from '../../components/Input';
 
 const LoginPage = () => {
   return (
@@ -14,10 +15,10 @@ const LoginPage = () => {
           Login page 
         </div>
         <div className='mb-36'>
-          <Button name='email' />
+          <Input name='email' type='email'/>
         </div>
         <div className='mb-36'>
-        <Button name='password' />
+        <Input name='password' type='password'/>
         </div>
         <div >
         <Button name='login' />
