@@ -4,6 +4,7 @@ import pic from '../../assets/img/panda2.svg'
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import { useState } from 'react';
+import { client } from '../../helpers/utils';
 
 const LoginPage = () => {
 
@@ -39,7 +40,11 @@ const LoginPage = () => {
 
   function handleLogin() {
     setEmailError(true);
-    
+    client('/home', {
+      headers: {
+        "authorization": "sjfbvofuf9wr68495628GJHF35",
+      }
+    }).then(resp => console.log(resp))
   }
   console.log(emailError, 'emailerror login page');
 

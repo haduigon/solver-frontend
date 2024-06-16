@@ -1,7 +1,8 @@
 /* eslint-disable */
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import styles from './Input.module.scss';
 import debounce from 'lodash.debounce';
+import classNames from 'classnames';
 
 type Props = {
   name: string,
@@ -12,18 +13,23 @@ type Props = {
 
 const Input: React.FC<Props> = ({ name, type, error, onChange }) => {
   const [localValue, setLocalValue] = useState('');
+  const inputRef = useRef(null);
+
+  const touched = document.activeElement === inputRef.current;
+  let regexp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  const showWarning = touched && !localValue.match(regexp) && localValue.length > 0;
 
   const creidentialDelay = useCallback(
     debounce((data: string) => {
       onChange(data, name);
-      console.log(localValue, 'localvalue');      
     }, 2000),
     []
   )
 
+  // console.log(localValue.match(regexp), showWarning, 'event.currentTarget.value.match(regexp)');
+
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     setLocalValue(event.currentTarget.value);
-    // onChange(event.currentTarget.value, name);
   
     creidentialDelay(event.currentTarget.value);
   }
@@ -32,14 +38,19 @@ const Input: React.FC<Props> = ({ name, type, error, onChange }) => {
     console.log('errorrrrrr input element'); 
   }
 
-
-
   return (
-    <div className={`${styles.inpt} mainText`}>
+    <div
+      className={classNames(`${styles.inpt} mainText`, {
+        [styles.border]: showWarning,
+      })}
+    >
       <input
+        ref={inputRef}
         value={localValue}
         placeholder={name} 
-        className={`${styles.inputField} mainText`} 
+        className={classNames(`${styles.inputField} ${styles.inputField}`, {
+          [styles.warning]: showWarning,
+        })}
         type={type}
         onChange={(event) => handleChange(event)}
       />
