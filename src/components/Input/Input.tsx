@@ -3,21 +3,27 @@ import React, { useCallback, useRef, useState } from 'react';
 import styles from './Input.module.scss';
 import debounce from 'lodash.debounce';
 import classNames from 'classnames';
+import { CustomError } from '../../types/types';
+import { useAppSelector } from '../../app/hooks';
 
 type Props = {
   name: string,
   type: string,
-  error?: boolean,
+  // error?: boolean,
   onChange: (cridential: string, name: string) => void,
 };
 
-const Input: React.FC<Props> = ({ name, type, error, onChange }) => {
-  const [localValue, setLocalValue] = useState('');
+const Input: React.FC<Props> = ({ name, type, onChange }) => {
+  const [localValue, setLocalValue] = useState<string>('');
   const inputRef = useRef(null);
 
   const touched = document.activeElement === inputRef.current;
   let regexp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  const showWarning = touched && !localValue.match(regexp) && localValue.length > 0;
+
+  const localError: CustomError["errorName"] = useAppSelector(state => state.error.errorName);
+  const inputHasError = localError === name;
+  const showWarning = (touched && !localValue.match(regexp) && localValue.length > 0) || inputHasError;
+
 
   const creidentialDelay = useCallback(
     debounce((data: string) => {
@@ -34,9 +40,9 @@ const Input: React.FC<Props> = ({ name, type, error, onChange }) => {
     creidentialDelay(event.currentTarget.value);
   }
 
-  if (error) {
-    console.log('errorrrrrr input element'); 
-  }
+  // if (error) {
+  //   console.log('errorrrrrr input element'); 
+  // }
 
   return (
     <div

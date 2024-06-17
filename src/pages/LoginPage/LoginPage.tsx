@@ -5,6 +5,10 @@ import Button from '../../components/Button';
 import Input from '../../components/Input';
 import { useState } from 'react';
 import { client } from '../../helpers/utils';
+import {
+  useAppDispatch,
+} from '../../app/hooks';
+import * as errorActios from '../../features/error'
 
 const LoginPage = () => {
 
@@ -13,20 +17,12 @@ const LoginPage = () => {
     password: '',
   });
 
-  // let regexp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  // console.log(cridentials.email.match(regexp), 'event.currentTarget.value.match(regexp)');
-  
-  // if (cridentials.email.match(regexp)) {
-  //   console.log('ok email');
-    
-  // }
+  let regexp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-  const [emailError, setEmailError] = useState(false);
+  const dispatch: any = useAppDispatch();
 
   function getCridentials(cridential: string, name: string) {
     if (name !== 'email' && name !== 'password') {
-      console.log('error');
-      
       throw Error('This field does not exist');
     }
 
@@ -36,19 +32,19 @@ const LoginPage = () => {
     }));
   }
 
-  console.log(cridentials, 'cridentials');
-
   function handleLogin() {
-    setEmailError(true);
+
+  if (!cridentials.email.match(regexp)) {
+    dispatch(errorActios.setError('email'))
+    return;
+  }
     client('/home', {
       headers: {
         "authorization": "sjfbvofuf9wr68495628GJHF35",
       }
     }).then(resp => console.log(resp))
   }
-  console.log(emailError, 'emailerror login page');
-
-
+ 
   return (
     <div className={styles.container}>
       <div className={styles.box}>
@@ -59,7 +55,7 @@ const LoginPage = () => {
           Login page 
         </div>
         <div className='mb-36'>
-          <Input name='email' type='email' onChange={getCridentials} error={emailError} />
+          <Input name='email' type='email' onChange={getCridentials} />
         </div>
         <div className='mb-36'>
         <Input name='password' type='password'onChange={getCridentials}/>
