@@ -36,7 +36,7 @@ const Input: React.FC<Props> = ({ name, type, onChange }) => {
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     setLocalValue(event.currentTarget.value);
-  
+    
     creidentialDelay(event.currentTarget.value);
   }
 

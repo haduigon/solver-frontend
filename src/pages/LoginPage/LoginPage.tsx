@@ -8,7 +8,8 @@ import { client } from '../../helpers/utils';
 import {
   useAppDispatch,
 } from '../../app/hooks';
-import * as errorActios from '../../features/error'
+import * as errorActios from '../../features/error';
+import { logInWithEmailAndPassword } from '../../firebase/firebase';
 
 const LoginPage = () => {
 
@@ -32,17 +33,33 @@ const LoginPage = () => {
     }));
   }
 
-  function handleLogin() {
+      console.log(cridentials.email, cridentials.password,'lgn login page');
+
+  async function handleLogin() {
+
+
 
   if (!cridentials.email.match(regexp)) {
     dispatch(errorActios.setError('email'))
     return;
   }
-    client('/home', {
+    
+    const lgn: any = await logInWithEmailAndPassword(cridentials.email, cridentials.password);
+    console.log(lgn, cridentials.email, cridentials.password, 'lgn login page');
+    if (lgn.user.accessToken) {
+      console.log(lgn.user.accessToken, 'lgn.user.accessToken');
+          client('/home', {
       headers: {
-        "authorization": "sjfbvofuf9wr68495628GJHF35",
+        "authorization": lgn.user.accessToken,
       }
     }).then(resp => console.log(resp))
+    }
+    
+    // client('/home', {
+    //   headers: {
+    //     "authorization": "sjfbvofuf9wr68495628GJHF35",
+    //   }
+    // }).then(resp => console.log(resp))
   }
  
   return (
@@ -60,7 +77,7 @@ const LoginPage = () => {
         <div className='mb-36'>
         <Input name='password' type='password'onChange={getCridentials}/>
         </div>
-        <div onClick={handleLogin}>
+        <div >
           <Button name='login' onClick={handleLogin} />
         </div>
       </div>
