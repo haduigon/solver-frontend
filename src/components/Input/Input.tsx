@@ -1,13 +1,19 @@
 /* eslint-disable */
-import React, { useCallback, useRef, useState } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  // useRef,
+  useState
+} from 'react';
 import styles from './Input.module.scss';
 import debounce from 'lodash.debounce';
 import classNames from 'classnames';
 import { CustomError } from '../../types/types';
-import { useAppSelector } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import * as errorActions from '../../features/error'
 
 type Props = {
-  name: string,
+  name: CustomError['errorName'],
   type: string,
   // error?: boolean,
   onChange: (cridential: string, name: string) => void,
@@ -15,24 +21,32 @@ type Props = {
 
 const Input: React.FC<Props> = ({ name, type, onChange }) => {
   const [localValue, setLocalValue] = useState<string>('');
-  const inputRef = useRef(null);
+  // const inputRef = useRef(null);
+  const dispatch: any = useAppDispatch();
 
-  const touched = document.activeElement === inputRef.current;
+  const errorName = name === 'email' ? 'emailError' : 'passwordError'; 
   let regexp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-  const localError: CustomError["errorName"] = useAppSelector(state => state.error.errorName);
-  const inputHasError = localError === name;
-  const showWarning = (touched && !localValue.match(regexp) && localValue.length > 0) || inputHasError;
-
-
+  const showWarning = useAppSelector(state => state.error[errorName]);
+  // const localEror = useAppSelector(state => state.error)
+  // console.log(localEror, showWarning, errorName, name, 'errr');
+  
+  useEffect(() => {
+    if (name === 'email' && localValue.match(regexp)) {
+      dispatch(errorActions.setEmailError(false));
+    }
+    else if (name === 'password' && localValue.length > 6) {
+      // console.log(name, localValue, 'trololo222');      
+      dispatch(errorActions.setPasswordError(false));
+    }
+  }, [localValue])
+  
   const creidentialDelay = useCallback(
     debounce((data: string) => {
       onChange(data, name);
-    }, 2000),
+    }, 1000),
     []
   )
-
-  // console.log(localValue.match(regexp), showWarning, 'event.currentTarget.value.match(regexp)');
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     setLocalValue(event.currentTarget.value);
@@ -40,9 +54,6 @@ const Input: React.FC<Props> = ({ name, type, onChange }) => {
     creidentialDelay(event.currentTarget.value);
   }
 
-  // if (error) {
-  //   console.log('errorrrrrr input element'); 
-  // }
 
   return (
     <div
@@ -51,7 +62,7 @@ const Input: React.FC<Props> = ({ name, type, onChange }) => {
       })}
     >
       <input
-        ref={inputRef}
+        // ref={inputRef}
         value={localValue}
         placeholder={name} 
         className={classNames(`${styles.inputField} ${styles.inputField}`, {

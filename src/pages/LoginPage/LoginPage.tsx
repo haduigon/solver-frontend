@@ -8,7 +8,7 @@ import { client } from '../../helpers/utils';
 import {
   useAppDispatch,
 } from '../../app/hooks';
-import * as errorActios from '../../features/error';
+import * as errorActions from '../../features/error';
 import { logInWithEmailAndPassword } from '../../firebase/firebase';
 
 const LoginPage = () => {
@@ -33,19 +33,23 @@ const LoginPage = () => {
     }));
   }
 
-      console.log(cridentials.email, cridentials.password,'lgn login page');
+      // console.log(cridentials.email, cridentials.password,'lgn login page');
 
   async function handleLogin() {
-
-
-
   if (!cridentials.email.match(regexp)) {
-    dispatch(errorActios.setError('email'))
-    return;
+    dispatch(errorActions.setEmailError(true))
   }
     
-    const lgn: any = await logInWithEmailAndPassword(cridentials.email, cridentials.password);
-    console.log(lgn, cridentials.email, cridentials.password, 'lgn login page');
+  if (cridentials.password.length < 6) {
+    dispatch(errorActions.setPasswordError(true));
+  } 
+     else {      
+    const lgn: any = await logInWithEmailAndPassword(cridentials.email, cridentials.password);    
+    
+    if (!Object.hasOwn(lgn, 'user')) {
+      console.log('undefined user');
+      return;
+    }
     if (lgn.user.accessToken) {
       console.log(lgn.user.accessToken, 'lgn.user.accessToken');
           client('/home', {
@@ -54,12 +58,8 @@ const LoginPage = () => {
       }
     }).then(resp => console.log(resp))
     }
-    
-    // client('/home', {
-    //   headers: {
-    //     "authorization": "sjfbvofuf9wr68495628GJHF35",
-    //   }
-    // }).then(resp => console.log(resp))
+    }
+
   }
  
   return (

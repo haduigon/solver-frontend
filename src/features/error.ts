@@ -1,20 +1,24 @@
 /* eslint-disable */
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { CustomError } from '../types/types';
+// import { CustomError } from '../types/types';
 
-const initialError: CustomError = {
-  errorName: "",
+const initialError = {
+  emailError: false,
+  passwordError: false,
 };
 
 const errorSlice = createSlice({
   name: 'errorName',
   initialState: initialError,
   reducers: {
-    setError: (state, action: PayloadAction<CustomError["errorName"]>) => {
-      state.errorName = action.payload
+    setEmailError: (state, action: PayloadAction<boolean>) => {
+      state.emailError = action.payload
+    },
+    setPasswordError: (state, action: PayloadAction<boolean>) => {
+      state.passwordError = action.payload
     }
   },
 });
 
 export default errorSlice.reducer;
-export const { setError } = errorSlice.actions;
+export const { setEmailError, setPasswordError } = errorSlice.actions;

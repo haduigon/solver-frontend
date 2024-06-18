@@ -1,3 +1,3 @@
 export interface CustomError {
-  errorName: "email" | "password" | "",
+  errorName: "email" | "password",
 }

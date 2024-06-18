@@ -1,12 +1,12 @@
 /* eslint-disable */
 import { initializeApp } from 'firebase/app';
 import {
-  GoogleAuthProvider,
+  // GoogleAuthProvider,
   getAuth,
-  signInWithPopup,
+  // signInWithPopup,
   signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-  signOut
+  // createUserWithEmailAndPassword,
+  // signOut
 } from "firebase/auth";
 
 const firebaseConfig = {
@@ -21,7 +21,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const googleProvider = new GoogleAuthProvider();
+// const googleProvider = new GoogleAuthProvider();
 
 async function logInWithEmailAndPassword(email: string, password: string) {
   try {
