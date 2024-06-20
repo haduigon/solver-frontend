@@ -1,0 +1,20 @@
+.loaderBox {
+  width: 100px;
+  height: 100px;
+  box-sizing: border-box;
+  border-radius: 22px;
+  background-color: #325F58;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 40%;
+}
+
+.rotate {
+  animation: loader 1.5s linear infinite;
+}
+
+@keyframes loader {
+  to { transform: rotate(360deg); }
+}

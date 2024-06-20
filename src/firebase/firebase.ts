@@ -21,13 +21,12 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-// const googleProvider = new GoogleAuthProvider();
 
 async function logInWithEmailAndPassword(email: string, password: string) {
   try {
     const login = await signInWithEmailAndPassword(auth, email, password);
     console.log(login, 'login inside farebase.ts');
-    return login;
+    return JSON.parse(JSON.stringify(login));
   } catch (error) {
     return error;
   }

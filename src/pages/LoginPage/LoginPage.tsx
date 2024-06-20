@@ -7,9 +7,11 @@ import { useState } from 'react';
 import { client } from '../../helpers/utils';
 import {
   useAppDispatch,
+  useAppSelector,
 } from '../../app/hooks';
 import * as errorActions from '../../features/error';
-import { logInWithEmailAndPassword } from '../../firebase/firebase';
+import * as userActions from '../../features/user'
+import Loader from '../../components/Loader';
 
 const LoginPage = () => {
 
@@ -21,6 +23,7 @@ const LoginPage = () => {
   let regexp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   const dispatch: any = useAppDispatch();
+  const showLoader = useAppSelector(state => state.user.isLoading);
 
   function getCridentials(cridential: string, name: string) {
     if (name !== 'email' && name !== 'password') {
@@ -33,49 +36,47 @@ const LoginPage = () => {
     }));
   }
 
-      // console.log(cridentials.email, cridentials.password,'lgn login page');
-
   async function handleLogin() {
-  if (!cridentials.email.match(regexp)) {
-    dispatch(errorActions.setEmailError(true))
-  }
-    
-  if (cridentials.password.length < 6) {
-    dispatch(errorActions.setPasswordError(true));
-  } 
-     else {      
-    const lgn: any = await logInWithEmailAndPassword(cridentials.email, cridentials.password);    
-    
-    if (!Object.hasOwn(lgn, 'user')) {
-      console.log('undefined user');
-      return;
+    if (!cridentials.email.match(regexp)) {
+      dispatch(errorActions.setEmailError(true));
     }
-    if (lgn.user.accessToken) {
-      console.log(lgn.user.accessToken, 'lgn.user.accessToken');
-          client('/home', {
-      headers: {
-        "authorization": lgn.user.accessToken,
+
+    if (cridentials.password.length < 6) {
+      dispatch(errorActions.setPasswordError(true));
+    }
+    else {
+      const lgn: any = await dispatch(userActions.userAuthEmailPassword(cridentials));
+      if (!Object.hasOwn(lgn.payload, 'user')) {
+        console.log('undefined user');
+        return;
       }
-    }).then(resp => console.log(resp))
-    }
+      if (lgn.payload.user.stsTokenManager.accessToken) {
+        client.get('/home', {
+          headers: {
+            "authorization": lgn.payload.user.stsTokenManager.accessToken,
+          }
+        }).then(resp => console.log(resp))
+      }
     }
 
   }
- 
+
   return (
     <div className={styles.container}>
       <div className={styles.box}>
         <div>
-          <img src={pic}  alt='pic'/>
+          <img src={pic} alt='pic' />
         </div>
         <div className={`${styles.textBlock} mb-40 mt-40 mainText`}>
-          Login page 
+
+          Login page
+          {showLoader && <Loader />}
         </div>
         <div className='mb-36'>
           <Input name='email' type='email' onChange={getCridentials} />
         </div>
         <div className='mb-36'>
-        <Input name='password' type='password'onChange={getCridentials}/>
+          <Input name='password' type='password' onChange={getCridentials} />
         </div>
         <div >
           <Button name='login' onClick={handleLogin} />
