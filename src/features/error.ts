@@ -1,17 +1,16 @@
 /* eslint-disable */
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-// import { CustomError } from '../types/types';
 
 type ErrorState = {
   emailError: boolean,
   passwordError: boolean,
-  errorMessage: null | string,
+  // errorMessage: null | string,
 }
 
 const initialError: ErrorState = {
   emailError: false,
   passwordError: false,
-  errorMessage: null,
+  // errorMessage: null,
 };
 
 const errorSlice = createSlice({

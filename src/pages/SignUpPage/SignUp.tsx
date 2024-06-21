@@ -21,7 +21,6 @@ const SignUpPage = () => {
 
   const dispatch: any = useAppDispatch();
   const showLoader = useAppSelector(state => state.user.isLoading);
-  // const errorMessage = useAppSelector(state => state.error.errorMessage);
   const [message, setMessage] = useState<null | string>(null)
 
 
@@ -60,9 +59,6 @@ const SignUpPage = () => {
       }
     }
   }
-
-  console.log(cridentials);
-
 
   return (
     <div className={styles.container}>

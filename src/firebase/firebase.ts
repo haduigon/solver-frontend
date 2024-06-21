@@ -1,12 +1,9 @@
 /* eslint-disable */
 import { initializeApp } from 'firebase/app';
 import {
-  // GoogleAuthProvider,
   getAuth,
-  // signInWithPopup,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
-  // signOut
 } from "firebase/auth";
 
 const firebaseConfig = {
@@ -25,7 +22,6 @@ const auth = getAuth(app);
 async function logInWithEmailAndPassword(email: string, password: string) {
   try {
     const login = await signInWithEmailAndPassword(auth, email, password);
-    // console.log(login, 'login inside farebase.ts');
     return JSON.parse(JSON.stringify(login));
   } catch (error) {
     return error;
@@ -34,16 +30,11 @@ async function logInWithEmailAndPassword(email: string, password: string) {
 async function createUserEmailPassword(email: string, password: string) {
   try {
     const newUser = await createUserWithEmailAndPassword(auth, email, password);
-    console.log(newUser, 'newUser inside farebase.ts');
     return JSON.parse(JSON.stringify(newUser));
   } catch (error: any) {
-    console.log(error.message, 'eeror');
-    
     return JSON.parse(JSON.stringify(error));
   }
 }
-
-
 
 export {
   logInWithEmailAndPassword,

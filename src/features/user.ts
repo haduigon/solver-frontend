@@ -1,8 +1,6 @@
 /* eslint-disable */
 import {
   createAsyncThunk, createSlice,
-  // isAnyOf,
-  // isAsyncThunkAction,
   isFulfilled,
   isPending,
   isRejected
@@ -29,19 +27,16 @@ const userSlice = createSlice({
       (state) => {
         state.isLoading = true
         state.hasError = false
-        console.log('admatcher pending')
       })
     builder.addMatcher(
       isFulfilled(userAuthEmailPassword, userCreateEmailPassword),
       (state) => {
-        console.log('admatcher fullfilled')
         state.isLoading = false
         state.hasError = false
       })
     builder.addMatcher(
       isRejected(userAuthEmailPassword, userCreateEmailPassword),
       (state) => {
-        console.log('admatcher fullfilled')
         state.isLoading = false
         state.hasError = true
       })
