@@ -1,6 +1,6 @@
 /* eslint-disable */
 import styles from '../HomePage/HomePage.module.scss';
-import pic from '../../assets/img/panda2.svg'
+import pic from '../../assets/img/red2.svg'
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import { useState } from 'react';
@@ -12,6 +12,7 @@ import {
 import * as errorActions from '../../features/error';
 import * as userActions from '../../features/user'
 import Loader from '../../components/Loader';
+import Message from '../../components/Message';
 
 const LoginPage = () => {
 
@@ -24,6 +25,7 @@ const LoginPage = () => {
 
   const dispatch: any = useAppDispatch();
   const showLoader = useAppSelector(state => state.user.isLoading);
+  const [message, setMessage] = useState<null | string>(null)
 
   function getCridentials(cridential: string, name: string) {
     if (name !== 'email' && name !== 'password') {
@@ -48,9 +50,11 @@ const LoginPage = () => {
       const lgn: any = await dispatch(userActions.userAuthEmailPassword(cridentials));
       if (!Object.hasOwn(lgn.payload, 'user')) {
         console.log('undefined user');
+        setMessage('Check your cridentials')
         return;
       }
       if (lgn.payload.user.stsTokenManager.accessToken) {
+        setMessage('You successfully authorized')
         client.get('/home', {
           headers: {
             "authorization": lgn.payload.user.stsTokenManager.accessToken,
@@ -62,6 +66,7 @@ const LoginPage = () => {
 
   return (
     <div className={styles.container}>
+      {message && <Message message={message} />}
       <div className={styles.box}>
         <div>
           <img src={pic} alt='pic' />

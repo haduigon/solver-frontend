@@ -34,10 +34,12 @@ async function logInWithEmailAndPassword(email: string, password: string) {
 async function createUserEmailPassword(email: string, password: string) {
   try {
     const newUser = await createUserWithEmailAndPassword(auth, email, password);
-    // console.log(login, 'login inside farebase.ts');
+    console.log(newUser, 'newUser inside farebase.ts');
     return JSON.parse(JSON.stringify(newUser));
-  } catch (error) {
-    return error;
+  } catch (error: any) {
+    console.log(error.message, 'eeror');
+    
+    return JSON.parse(JSON.stringify(error));
   }
 }
 

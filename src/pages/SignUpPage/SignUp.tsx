@@ -8,6 +8,7 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import * as userActions from '../../features/user';
 import * as errorActions from '../../features/error';
 import Loader from '../../components/Loader';
+import Message from '../../components/Message';
 
 const SignUpPage = () => {
 
@@ -20,8 +21,12 @@ const SignUpPage = () => {
 
   const dispatch: any = useAppDispatch();
   const showLoader = useAppSelector(state => state.user.isLoading);
-  function getCridentials(cridential: string, name: string) {
+  // const errorMessage = useAppSelector(state => state.error.errorMessage);
+  const [message, setMessage] = useState<null | string>(null)
 
+
+
+  function getCridentials(cridential: string, name: string) {
     if (name !== 'email' && name !== 'password') {
       throw Error('This field does not exist');
     }
@@ -42,13 +47,16 @@ const SignUpPage = () => {
     }
     else {
       const lgn: any = await dispatch(userActions.userCreateEmailPassword(cridentials));
+      console.log(lgn.payload, 'user!');
+      
       if (!Object.hasOwn(lgn.payload, 'user')) {
-        console.log('undefined user');
+        console.log(lgn.payload.code, 'undefined user');
+        setMessage('Email is already in use');
         return;
       }
       if (lgn.payload.user.stsTokenManager.accessToken) {
         console.log(lgn.payload.user, 'lgn.payload.user');
-
+        setMessage('You created user. Please, Log in.')
       }
     }
   }
@@ -58,6 +66,7 @@ const SignUpPage = () => {
 
   return (
     <div className={styles.container}>
+      {message && <Message message={message} />}
       <div className={styles.box}>
         <div>
           <img src={pic} alt='pic' />
