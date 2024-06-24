@@ -20,3 +20,24 @@
 .warning {
   color: #FF7676;
 }
+
+.global-container {
+  background-color: #15272b;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.global-box {
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.global-text-block {
+  max-width: 600px;
+  // position: relative;
+}

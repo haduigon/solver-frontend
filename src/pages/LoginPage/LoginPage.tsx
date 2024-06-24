@@ -1,10 +1,10 @@
 /* eslint-disable */
-import styles from '../HomePage/HomePage.module.scss';
+// import styles from '../HomePage/HomePage.module.scss';
 import pic from '../../assets/img/red2.svg'
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import { useState } from 'react';
-import { client } from '../../helpers/utils';
+// import { client } from '../../helpers/utils';
 import {
   useAppDispatch,
   useAppSelector,
@@ -13,6 +13,7 @@ import * as errorActions from '../../features/error';
 import * as userActions from '../../features/user'
 import Loader from '../../components/Loader';
 import Message from '../../components/Message';
+// import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 const LoginPage = () => {
 
@@ -26,6 +27,17 @@ const LoginPage = () => {
   const dispatch: any = useAppDispatch();
   const showLoader = useAppSelector(state => state.user.isLoading);
   const [message, setMessage] = useState<null | string>(null)
+
+  // const auth = getAuth();
+  // const user = auth.currentUser;
+  // onAuthStateChanged(auth, (newUser) => {
+  //   if (newUser) {
+  //     console.log('okokok', newUser);
+      
+  //   }
+  // })
+  // console.log(user, 'serrrr');
+  
 
   function getCridentials(cridential: string, name: string) {
     if (name !== 'email' && name !== 'password') {
@@ -55,23 +67,23 @@ const LoginPage = () => {
       }
       if (lgn.payload.user.stsTokenManager.accessToken) {
         setMessage('You successfully authorized')
-        client.get('/home', {
-          headers: {
-            "authorization": lgn.payload.user.stsTokenManager.accessToken,
-          }
-        }).then(resp => console.log(resp))
+        // client.get('/home', {
+        //   headers: {
+        //     "authorization": lgn.payload.user.stsTokenManager.accessToken,
+        //   }
+        // }).then(resp => console.log(resp))
       }
     }
   }
 
   return (
-    <div className={styles.container}>
+    <div className={`global-container`}>
       {message && <Message message={message} />}
-      <div className={styles.box}>
+      <div className={`global-box`}>
         <div>
           <img src={pic} alt='pic' />
         </div>
-        <div className={`${styles.textBlock} mb-40 mt-40 mainText`}>
+        <div className={`global-text-block mb-40 mt-40 mainText`}>
 
           Login page
           {showLoader && <Loader />}

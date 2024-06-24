@@ -1,5 +1,5 @@
 /* eslint-disable */
-import styles from '../HomePage/HomePage.module.scss';
+// import styles from '../HomePage/HomePage.module.scss';
 import pic from '../../assets/img/panda2.svg'
 import Button from '../../components/Button';
 import Input from '../../components/Input';
@@ -61,13 +61,13 @@ const SignUpPage = () => {
   }
 
   return (
-    <div className={styles.container}>
+    <div className={`global-container`}>
       {message && <Message message={message} />}
-      <div className={styles.box}>
+      <div className={`global-box`}>
         <div>
           <img src={pic} alt='pic' />
         </div>
-        <div className={`${styles.textBlock} mb-40 mt-40 mainText`}>
+        <div className={`global-text-block mb-40 mt-40 mainText`}>
           Sign up page
           {showLoader && <Loader />}
         </div>
