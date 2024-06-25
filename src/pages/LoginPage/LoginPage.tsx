@@ -14,6 +14,7 @@ import * as userActions from '../../features/user'
 import Loader from '../../components/Loader';
 import Message from '../../components/Message';
 // import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import SocialNetworkLoginBox from '../../components/SocialNetworkLoginBox';
 
 const LoginPage = () => {
 
@@ -97,7 +98,11 @@ const LoginPage = () => {
         <div >
           <Button name='login' onClick={handleLogin} />
         </div>
+        <div className='mt-40'>
+          <SocialNetworkLoginBox />
+        </div>
       </div>
+      
     </div>
   )
 }
