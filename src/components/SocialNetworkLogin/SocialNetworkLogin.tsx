@@ -1,14 +1,13 @@
-import styles from './SocialNetworkLogin.module.scss'
-import classNames from 'classnames'
+import styles from './SocialNetworkLogin.module.scss';
+import classNames from 'classnames';
 
 type Props = {
   image: string,
   name?: string,
-}
+};
 
 const SocialNetworkLogin: React.FC<Props> = ({ image, name }) => {
-  const color = styles.back
-  // console.log(typeof color, 'color');
+  const color = styles.back;
   
   return (
     <div className={classNames({
@@ -16,7 +15,7 @@ const SocialNetworkLogin: React.FC<Props> = ({ image, name }) => {
     })}>
       <img src={image} alt="logo" />
     </div>
-  )
-} 
+  );
+};
 
 export default SocialNetworkLogin;
