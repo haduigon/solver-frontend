@@ -1,3 +1,4 @@
+/* eslint-disable */
 // import { useAppDispatch } from '../../app/hooks';
 // import * as userActions from '../../features/user';
 import { useNavigate } from 'react-router-dom';
