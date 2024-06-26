@@ -1,10 +1,33 @@
 /* eslint-disable */
 // import styles from './HomePage.module.scss';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import pic from '../../assets/img/panda2.svg'
 import Button from '../../components/Button';
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
+// import { useEffect } from 'react';
 
 const HomePage = () => {
+
+    const navigate = useNavigate();
+
+  const listenAuth = onAuthStateChanged(getAuth(), (user2) => {
+    if (user2) {
+      navigate('/chat');
+    }
+
+    return () => {
+      listenAuth();
+    }
+  });
+
+  // excersises
+
+  
+  
+  
+
+
+
   return (
     <div className={`global-container`}>
       <div className={`global-box`}>

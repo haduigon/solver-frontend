@@ -15,6 +15,8 @@ import Loader from '../../components/Loader';
 import Message from '../../components/Message';
 // import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import SocialNetworkLoginBox from '../../components/SocialNetworkLoginBox';
+import { useNavigate } from 'react-router-dom';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 const LoginPage = () => {
 
@@ -27,29 +29,29 @@ const LoginPage = () => {
 
   const dispatch: any = useAppDispatch();
   const showLoader = useAppSelector(state => state.user.isLoading);
-  const [message, setMessage] = useState<null | string>(null)
+  const [message, setMessage] = useState<null | string>(null);
+  const navigate = useNavigate();
 
-  // const auth = getAuth();
-  // const user = auth.currentUser;
-  // onAuthStateChanged(auth, (newUser) => {
-  //   if (newUser) {
-  //     console.log('okokok', newUser);
-      
-  //   }
-  // })
-  // console.log(user, 'serrrr');
-  
-
-  function getCridentials(cridential: string, name: string) {
-    if (name !== 'email' && name !== 'password') {
-      throw Error('This field does not exist');
+  const listenAuth = onAuthStateChanged(getAuth(), (user2) => {
+    if (user2) {
+      navigate('/chat');
     }
 
-    setCridentials((state) => ({
-      ...state,
-      [name]: cridential,
-    }));
-  }
+    return () => {
+      listenAuth();
+    }
+  });
+
+    function getCridentials(cridential: string, name: string) {
+      if (name !== 'email' && name !== 'password') {
+        throw Error('This field does not exist');
+      }
+
+      setCridentials((state) => ({
+        ...state,
+        [name]: cridential,
+      }));
+    }
 
   async function handleLogin() {
     if (!cridentials.email.match(regexp)) {
@@ -63,11 +65,14 @@ const LoginPage = () => {
       const lgn: any = await dispatch(userActions.userAuthEmailPassword(cridentials));
       if (!Object.hasOwn(lgn.payload, 'user')) {
         console.log('undefined user');
-        setMessage('Check your cridentials')
+        setMessage('Check your cridentials');
         return;
       }
       if (lgn.payload.user.stsTokenManager.accessToken) {
-        setMessage('You successfully authorized')
+        setMessage('You successfully authorized');
+
+        setTimeout(() => navigate('/chat'), 1000)
+
         // client.get('/home', {
         //   headers: {
         //     "authorization": lgn.payload.user.stsTokenManager.accessToken,
@@ -98,11 +103,16 @@ const LoginPage = () => {
         <div >
           <Button name='login' onClick={handleLogin} />
         </div>
+        {/* <div className={`global-text-block mainText`}>
+
+          Login via 
+
+        </div> */}
         <div className='mt-40'>
           <SocialNetworkLoginBox />
         </div>
       </div>
-      
+
     </div>
   )
 }

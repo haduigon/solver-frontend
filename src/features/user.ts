@@ -5,7 +5,7 @@ import {
   isPending,
   isRejected
 } from "@reduxjs/toolkit";
-import { logInWithEmailAndPassword, createUserEmailPassword } from '../firebase/firebase';
+import { logInWithEmailAndPassword, createUserEmailPassword, logout } from '../firebase/firebase';
 
 type User = {
   isLoading: boolean,
@@ -49,10 +49,19 @@ export const userAuthEmailPassword = createAsyncThunk("user/auth", (cridentials:
   password: string,
 }) => {
   return logInWithEmailAndPassword(cridentials.email, cridentials.password)
-})
+});
+
 export const userCreateEmailPassword = createAsyncThunk("user/create", (cridentials: {
   email: string,
   password: string,
 }) => {
   return createUserEmailPassword(cridentials.email, cridentials.password)
-})
+});
+
+// export const userLogout = createAsyncThunk("user/create", ({}) => {
+//   return logout();
+// })
+
+export const userLogout = () => {
+  return logout();
+};
