@@ -1,7 +1,7 @@
 /* eslint-disable */
 // import styles from './HomePage.module.scss';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import pic from '../../assets/img/panda2.svg'
+import pic from '../../assets/img/panda3.svg'
 import Button from '../../components/Button';
 import { NavLink, useNavigate } from 'react-router-dom'
 // import { useEffect } from 'react';
@@ -19,14 +19,6 @@ const HomePage = () => {
       listenAuth();
     }
   });
-
-  // excersises
-
-  
-  
-  
-
-
 
   return (
     <div className={`global-container`}>

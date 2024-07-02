@@ -9,6 +9,7 @@ import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
 import ChatPage from './pages/ChatPage';
+import ProtectedRoute from './app/routes/ProtectedRoute';
 
 export const Root = () => (
   <HashRouter>
@@ -18,7 +19,11 @@ export const Root = () => (
         <Route path='/login' element={<LoginPage />} />
         <Route path='/signup' element={<SignUpPage />} />
         <Route path='/signup' element={<SignUpPage />} />
-        <Route path='/chat' element={<ChatPage />} />
+        <Route path='/chat' element={
+          <ProtectedRoute>
+            <ChatPage />
+          </ProtectedRoute>
+        } />
       </Route>
     </Routes>
   </HashRouter>

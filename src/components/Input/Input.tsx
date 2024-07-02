@@ -65,8 +65,9 @@ const Input: React.FC<Props> = ({ name, type, onChange }) => {
         // ref={inputRef}
         value={localValue}
         placeholder={name} 
-        className={classNames(`${styles.inputField} ${styles.inputField}`, {
+        className={classNames(` ${styles.inputField} ${styles.inputField}`, {
           [styles.warning]: showWarning,
+          'email': localValue.length > 0,
         })}
         type={type}
         onChange={(event) => handleChange(event)}

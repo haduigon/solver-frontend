@@ -6,6 +6,7 @@ import {
   createUserWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
+// import { useNavigate } from 'react-router-dom';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBbk2oWzNgTEaKBtfbMdSirTR3wfM0c08E",
@@ -38,8 +39,11 @@ async function createUserEmailPassword(email: string, password: string) {
   }
 }
 
-async function logout() {
-  await signOut(auth);
+ function logout() {
+  // const navigate = useNavigate()
+
+   signOut(auth);
+  // navigate('/')
 }
 
 export {
