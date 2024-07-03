@@ -1,6 +1,7 @@
 /* eslint-disable */
 import Menu from "../../components/Menu";
 import { useAppSelector } from "../../app/hooks";
+import ChatInput from "../../components/ChatInput";
 
 
 const ChatPage = () => {
@@ -8,7 +9,8 @@ const ChatPage = () => {
   
   return (
     <div className="global-container mainText">
-      {showMenu&& <Menu />}
+      {showMenu && <Menu />}
+      <ChatInput />
     </div>
   );
 };

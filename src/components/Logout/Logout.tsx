@@ -41,7 +41,7 @@ const Logout = () => {
         <div className={`${styles.text}`} onClick={clickHandler}>
       I`m leaving
         </div>
-        <div onClick={cancel222}>
+        <div onClick={cancel222} className={`${styles.text}`}>
           I`m with you !
         </div>
       </div>
