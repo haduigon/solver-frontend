@@ -1,8 +1,8 @@
 /* eslint-disable */
 import axios from 'axios';
 
-// const apiUrl = 'https://backend-frontend-solver-2.onrender.com/docs#/default/root_home_post';
-const apiUrl = 'http://127.0.0.1:8000';
+const apiUrl = 'https://backend-frontend-solver-2.onrender.com/docs#/default/root_home_post';
+// const apiUrl = 'http://127.0.0.1:8000';
 
 export const client = axios.create({
   baseURL: apiUrl,
