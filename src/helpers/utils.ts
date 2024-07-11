@@ -1,6 +1,5 @@
 /* eslint-disable */
 import axios from 'axios';
-import { error } from 'console';
 
 const apiUrl = 'https://backend-frontend-solver-2.onrender.com';
 // const apiUrl = 'http://127.0.0.1:8000';
