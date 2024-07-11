@@ -1,0 +1,93 @@
+.box {
+  width: 100%;
+  display: flex;
+  // flex: 1;
+  // overflow: auto;
+  justify-content: end;
+  padding-right: 1%;
+  margin-bottom: 10px;
+  // flex-basis: 1;
+  // flex-grow: 0;
+  // min-height: 0;
+  // height: 100%;
+  // overflow: auto;
+  min-height: min-content;
+}
+
+.message {
+  all: unset;
+  background-color: #325F58;
+  border-radius: 5px;
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  // word-wrap: break-word;
+  padding-left: 10%;
+  padding-right: 10%;
+  // display: flex;
+  // min-height: min-content;
+  // min-height: fit-content;
+  // height: 100%;
+}
+
+.responseBox {
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  padding-left: 1%;
+  margin-bottom: 10px;
+  // min-height: 0;
+  // flex-basis: 1;
+  // flex-grow: 0;
+  // height: 100%;
+  // flex: 1;
+  // overflow: auto;
+  min-height: min-content;
+}
+
+.responseMessage {
+  all: unset;
+  background-color: #15272B;
+  border: 2px solid #8BC4AD;
+  border-radius: 5px;
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  padding-left: 10%;
+  padding-right: 10%;
+  overflow-wrap: break-word;
+  display: flex;
+  min-height: min-content;
+  // min-height: 0;
+}
+
+.pandaBox {
+  width: 8%;
+  max-width: 80px;
+  min-width: 20px;
+  padding-right: 2%;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+
+.userBox {
+  width: 8%;
+  max-width: 80px;
+  min-width: 20px;
+  padding-left: 2%;
+  display: flex;
+  // flex-direction: column;
+  // justify-content: end;
+}
+
+.wrap {
+  // width: 100%;
+  // height: 100%;
+}
