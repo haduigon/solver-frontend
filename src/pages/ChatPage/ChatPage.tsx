@@ -19,20 +19,20 @@ const ChatPage = () => {
   // const test = new Dialog('response');
   // test.addMessage({} as Message)
   // console.log(test.get().messages, 'teest')
-  console.log(appState.dialog)
-  const startMessage = {
-    id: '',
-    type: 'request',
-    user: '',
-    body: 'fl  ;fk fk ffl  ;fk fk ffl  ;fk fk ffl  ;fk fk ffl  ;fk fk ffl  ;fk fk f',
+  // console.log(appState.dialog)
+  // const startMessage = {
+  //   id: '',
+  //   type: 'request',
+  //   user: '',
+  //   body: 'fl  ;fk fk ffl  ;fk fk ffl  ;fk fk ffl  ;fk fk ffl  ;fk fk ffl  ;fk fk f',
 
-  }
-  const startMessage2 = {
-    id: '',
-    type: 'response',
-    body: 'fl  ;fk fk ffl  ;fk fk ffl  ;fk fk ffl  ;fk fk ffl  ;fk fk ffl  ;fk fk f',
-    user: '',
-  }
+  // }
+  // const startMessage2 = {
+  //   id: '',
+  //   type: 'response',
+  //   body: 'fl  ;fk fk ffl  ;fk fk ffl  ;fk fk ffl  ;fk fk ffl  ;fk fk ffl  ;fk fk f',
+  //   user: '',
+  // }
   return (
     <div className={`${styles.box} mainText`}>
       {/* <ChatMessage /> */}
