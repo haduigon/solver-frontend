@@ -57,10 +57,10 @@ const ChatInput = () => {
 
     // console.log(questionText, String(currentUser.accessToken))
     // sendMessage(currentUser.accessToken, questionText || '').then(resp => console.log(resp, 'dfvdfv'))
-    // dispatch(appActions.getAnswer({
-    //   token: currentUser.accessToken,
-    //   question: questionText || '',
-    // }))
+    dispatch(appActions.getAnswer({
+      token: currentUser.accessToken,
+      question: questionText || '',
+    }))
 
 
 
