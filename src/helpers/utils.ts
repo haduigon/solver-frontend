@@ -1,8 +1,11 @@
 /* eslint-disable */
 import axios from 'axios';
+import { error } from 'console';
 
-const apiUrl = 'https://backend-frontend-solver-2.onrender.com/docs#/default/root_home_post';
+const apiUrl = 'https://backend-frontend-solver-2.onrender.com';
 // const apiUrl = 'http://127.0.0.1:8000';
+// const apiUrl = "https://ro.sms.destiny4you.com";
+
 
 export const client = axios.create({
   baseURL: apiUrl,
@@ -17,5 +20,6 @@ export async function sendMessage(token: string, question: string) {
     error: question,
   });
 
-  return response.data.solver;
+  return response.data.message;
+  // return response.data.solver;
 }

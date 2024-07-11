@@ -2,7 +2,7 @@
 import styles from './ChatInput.module.scss';
 import arrow from '../../assets/img/arrow2.svg';
 import { useState } from 'react';
-// import { client } from '../../helpers/utils';
+import { client } from '../../helpers/utils';
 import { getAuth } from 'firebase/auth';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import * as appActions from '../../features/app';
@@ -57,30 +57,19 @@ const ChatInput = () => {
 
     // console.log(questionText, String(currentUser.accessToken))
     // sendMessage(currentUser.accessToken, questionText || '').then(resp => console.log(resp, 'dfvdfv'))
-    dispatch(appActions.getAnswer({
-      token: currentUser.accessToken,
-      question: questionText || '',
-    }))
+    // dispatch(appActions.getAnswer({
+    //   token: currentUser.accessToken,
+    //   question: questionText || '',
+    // }))
 
 
 
-    // client.post('/home', {
-    //   headers: {
-    //     "authorization": String(currentUser.accessToken),
-    //   },
-    //   error: questionText,
-    // }).then(resp => {
-    //   const idR = getId();
-
-    // const newR = {
-    //   id: idR,
-    //   type: 'response',
-    //   user: currentUser.email,
-    //   body: resp.data.solver,
-    // };
-    //   dispatch(appActions.setResponse(resp.data.solver));
-    //   dispatch(appActions.addMessage(newR))
-    // })
+    client.post('/home', {
+      headers: {
+        "authorization": currentUser.accessToken,
+      },
+      error: questionText,
+    }).then(resp => console.log(resp, 'rrrrreesp'))
     
 
       // console.log(test, 'test');

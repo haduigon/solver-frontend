@@ -40,7 +40,7 @@ const appSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getAnswer.fulfilled, (state, action) => {
       // const idR = getId();
-      // console.log(action, 'action app redux');
+      console.log(action, 'action app redux');
       
     const newR:Message = {
       id: 'fkvldfjvndijsnbijgnb',

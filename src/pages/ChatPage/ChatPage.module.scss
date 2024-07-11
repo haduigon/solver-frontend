@@ -1,20 +1,23 @@
 .box {
-  justify-content: end;
   background-color: #15272b;
   height: 70vh;
   display: flex;
-  flex: 1;
   flex-direction: column;
   justify-content: end;
   align-items: center;
-  // flex-basis: 1;
-  // flex-grow: 1;
-  // align-items: end;
   width: 100%;
-  overflow-y: auto;
-  // min-height: 0;
 }
 
+.flexBox {
+  background-color: #15272b;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  overflow-y: scroll;
+}
 
-
-
+.scroll {
+  scrollbar-width: none;
+}

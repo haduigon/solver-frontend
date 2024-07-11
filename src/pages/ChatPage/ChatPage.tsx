@@ -5,7 +5,7 @@ import ChatInput from "../../components/ChatInput";
 // import { getAuth } from "firebase/auth";
 import ChatMessage from "../../components/ChatMessage";
 import styles from './ChatPage.module.scss';
-// import Wave from "../../components/Wave";
+import Wave from "../../components/Wave";
 // import { Dialog } from "../../app/classes/Dialog";
 // import { Message } from "../../types/types";
 
@@ -20,19 +20,19 @@ const ChatPage = () => {
   // test.addMessage({} as Message)
   // console.log(test.get().messages, 'teest')
   console.log(appState.dialog)
-  // const startMessage = {
-  //   id: '',
-  //   type: 'request',
-  //   user: '',
-  //   body: 'fl  ;fk fk ffl  ;fk fk ffl  ;fk fk ffl  ;fk fk ffl  ;fk fk ffl  ;fk fk f',
+  const startMessage = {
+    id: '',
+    type: 'request',
+    user: '',
+    body: 'fl  ;fk fk ffl  ;fk fk ffl  ;fk fk ffl  ;fk fk ffl  ;fk fk ffl  ;fk fk f',
 
-  // }
-  // const startMessage2 = {
-  //   id: '',
-  //   type: 'response',
-  //   body: 'fl  ;fk fk ffl  ;fk fk ffl  ;fk fk ffl  ;fk fk ffl  ;fk fk ffl  ;fk fk f',
-  //   user: '',
-  // }
+  }
+  const startMessage2 = {
+    id: '',
+    type: 'response',
+    body: 'fl  ;fk fk ffl  ;fk fk ffl  ;fk fk ffl  ;fk fk ffl  ;fk fk ffl  ;fk fk f',
+    user: '',
+  }
   return (
     <div className={`${styles.box} mainText`}>
       {/* <ChatMessage /> */}
@@ -42,14 +42,38 @@ const ChatPage = () => {
           {response}
         </div>
       )} */}
-      <div className={`${styles.box} mainText`}>
-       
-        {/* <ChatMessage message={startMessage2} /> */}
-        {/* <Wave /> */}
-        {appState.dialog.map(item => <ChatMessage message={item} />)}
+      <div className={`${styles.flexBox} mainText`}>
+
+        <div style={{
+          overflowY: 'scroll',
+          width: '100%',
+        }}
+          className={styles.scroll}
+        >
+          {appState.dialog.map(item => <ChatMessage message={item} />)}
+          <Wave />
+          {/* <ChatMessage message={startMessage} />
+          <ChatMessage message={startMessage2} />
+          <ChatMessage message={startMessage} />
+          <ChatMessage message={startMessage2} />
+          <ChatMessage message={startMessage} />
+          <ChatMessage message={startMessage2} />
+          <ChatMessage message={startMessage} />
+          <ChatMessage message={startMessage2} />
+          <ChatMessage message={startMessage} />
+          <ChatMessage message={startMessage2} />
+          <ChatMessage message={startMessage} />
+          <ChatMessage message={startMessage2} />
+          <ChatMessage message={startMessage} />
+          <ChatMessage message={startMessage2} />
+          <ChatMessage message={startMessage} />
+          <ChatMessage message={startMessage2} /> */}
+        </div>
+        
+
       </div>
       {/* {appState.dialog.map(item => <ChatMessage message={item} />)} */}
-       {/* <ChatMessage message={startMessage} /> */}
+      {/* <ChatMessage message={startMessage} /> */}
       <ChatInput />
     </div>
   );
