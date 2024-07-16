@@ -10,16 +10,16 @@ type Props = {
 
 const SocialNetworkLogin: React.FC<Props> = ({ image, name }) => {
   const color = styles.back;
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
 
   function googleLogin() {
     dispatch(userActions.userGoogleLogin());
   }
-  
+
   return (
     <div
       className={classNames({
-      [color]: name === 'github',
+        [color]: name === 'github',
       })}
       onClick={googleLogin}
     >
