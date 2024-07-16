@@ -1,14 +1,14 @@
 /* eslint-disable */
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
-import { Message } from "../types/types";
 import { sendMessage } from "../helpers/utils";
-// import { getId } from '../../src/helpers/utils'
+import { Message } from "../app/classes/Message";
 
 type App = {
   showMenu: boolean,
   showLogout: boolean,
   response: string,
   dialog: Message[],
+  messageIsTyping: boolean,
 }
 
 const initialApp: App = {
@@ -16,6 +16,7 @@ const initialApp: App = {
   showLogout: false,
   response: '',
   dialog: [],
+  messageIsTyping: false,
 }
 
 const appSlice = createSlice({
@@ -33,24 +34,18 @@ const appSlice = createSlice({
     },
     addMessage: (state, action: PayloadAction<Message>) => {
       state.dialog.push(action.payload);
-      // console.log(state, action, 'state and action');
-      
     }
   },
   extraReducers: (builder) => {
     builder.addCase(getAnswer.fulfilled, (state, action) => {
-      // const idR = getId();
-      console.log(action, 'action app redux');
-      
-    const newR:Message = {
-      id: 'fkvldfjvndijsnbijgnb',
-      type: 'response',
-      user: 'haduigon@gmail.com',
-      body: action.payload as any,
-    } ;
-      state.dialog.push(newR)
+      const newR = new Message('response', action.payload);
+      state.dialog.push(JSON.parse(JSON.stringify(newR)));
+      state.messageIsTyping = false;
+    }); 
+    builder.addCase(getAnswer.pending, (state) => {
+      state.messageIsTyping = true;
     })
-  }
+  },
 })
 
 export default appSlice.reducer;

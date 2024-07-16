@@ -6,7 +6,7 @@ export type Message = {
   id: string,
   type: string,
   body: string | undefined,
-  user: string,
+  user: string | undefined | null,
 }
 
 export type Dialog = {

@@ -5,8 +5,9 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   signOut,
+  signInWithPopup,
+  GoogleAuthProvider,
 } from "firebase/auth";
-// import { useNavigate } from 'react-router-dom';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBbk2oWzNgTEaKBtfbMdSirTR3wfM0c08E",
@@ -19,7 +20,8 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+export const auth = getAuth(app);
+const provider = new GoogleAuthProvider()
 
 async function logInWithEmailAndPassword(email: string, password: string) {
   try {
@@ -39,15 +41,18 @@ async function createUserEmailPassword(email: string, password: string) {
   }
 }
 
- function logout() {
-  // const navigate = useNavigate()
+async function loginWithGoogle() {
+  const login = await signInWithPopup(auth, provider);
+  return JSON.parse(JSON.stringify(login))
+}
 
+ function logout() {
    signOut(auth);
-  // navigate('/')
 }
 
 export {
   logInWithEmailAndPassword,
   createUserEmailPassword,
   logout,
+  loginWithGoogle,
 };

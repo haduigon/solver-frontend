@@ -2,9 +2,6 @@
 import axios from 'axios';
 
 const apiUrl = 'https://backend-frontend-solver.onrender.com';
-// const apiUrl = 'http://127.0.0.1:8000';
-// const apiUrl = "https://ro.sms.destiny4you.com";
-// https://backend-frontend-solver.onrender.com
 
 export const client = axios.create({
   baseURL: apiUrl,
@@ -20,5 +17,11 @@ export async function sendMessage(token: string, question: string) {
   });
 
   return response.data.solver;
-  // return response.data.solver;
 }
+
+  export function getId(email: string = '') {
+      const time = new Date();
+
+    const id = `${email} ${time.toDateString()} ${time.getHours()} ${time.getMinutes()} ${time.getSeconds()} ${time.getMilliseconds()}`;
+    return id.replaceAll(' ', '-');
+  }

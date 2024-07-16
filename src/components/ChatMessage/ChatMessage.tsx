@@ -9,7 +9,6 @@ type Props = {
 }
 
 const ChatMessage: React.FC<Props> = ({ message = {} as Message }) => {
-  // console.log(message.type);
   
   return (
     <div className={classNames({
