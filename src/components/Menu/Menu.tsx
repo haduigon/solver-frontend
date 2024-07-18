@@ -19,22 +19,39 @@ const Menu = () => {
   return (
     <div className={`${styles.box}`}>
       <div className={`${styles.text} ${styles.item}`}>
-        <div>account</div>
+        Profile
         <div className={`${styles.cross}`} onClick={clickHandler}>
         <img src={cross} alt='close' />
       </div>
       </div>
       <div className={`${styles.text} ${styles.item}`}>
-        account
+        Chat
       </div>
       <div className={`${styles.text} ${styles.item}`}>
-        account
+        History
       </div>
-      <div
+      <div className={`${styles.text} ${styles.item}`}>
+        Contact information
+      </div>
+      <div className={`${styles.text} ${styles.item}`}>
+        Subscription
+      </div>
+
+
+
+
+
+
+
+
+
+      <div className={`${styles.logout}`}>
+        <div
         className={`${styles.text} ${styles.item}`}
         onClick={clickHandler2}
       >
-        Logout
+        <div className={`${styles.logout__text}`}>Log out</div>
+      </div>
       </div>
       {showLogout && (
           <Logout />

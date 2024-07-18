@@ -29,6 +29,23 @@
 }
 
 .cross {
-  width: 5%;
+  width: 3%;
   transform: rotate(45deg);
+}
+
+.logout {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  height: 50%;
+  align-items: center;
+
+  &__text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #15272B;
+    border-radius: 5px;
+    width: 30vw;
+  }
 }
