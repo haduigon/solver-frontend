@@ -5,10 +5,11 @@
 .box {
   position: absolute;
   top: 40%;
-  left: 50%;
+  left: 0;
+  right: 50%;
   border: 2px solid black;
   padding: 20px;
   cursor: pointer;
-  // width: fit-content;
-  // height: fit-content;
+  width: 50%;
+  transform: translateX(50%);
 }
