@@ -1,7 +1,11 @@
+@use "../../mixins";
+
 .btn {
   background-color: #325F58;
   border-radius: 22px;
-  width: 400px;
+  // width: 400px;
+  width: 40vw;
+  max-width: 400px;
   height: 80px;
   display: flex;
   justify-content: center;
@@ -9,5 +13,16 @@
   font-weight: bold;
   font-size: 30px;
   cursor: pointer;
+
+  @include mixins.Tablet {
+    font-size: 20px;
+    width: 50vw;
+    max-width: 400px;
+  }
+  @include mixins.Mobile {
+    font-size: 20px;
+    width: 70vw;
+    max-width: 400px;
+  }
 }
 

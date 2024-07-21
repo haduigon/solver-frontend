@@ -10,6 +10,8 @@ import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
 import ChatPage from './pages/ChatPage';
 import ProtectedRoute from './app/routes/ProtectedRoute';
+import ProfilePage from './pages/PofilePage/ProfilePage';
+import HistoryPage from './pages/HistoryPage';
 
 export const Root = () => (
   <HashRouter>
@@ -18,10 +20,19 @@ export const Root = () => (
         <Route index element={<HomePage />} />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/signup' element={<SignUpPage />} />
-        <Route path='/signup' element={<SignUpPage />} />
+        <Route path='/profile' element={
+          <ProtectedRoute>
+            <ProfilePage />
+           </ProtectedRoute>
+        } />
         <Route path='/chat' element={
           <ProtectedRoute>
             <ChatPage />
+          </ProtectedRoute>
+        } />
+        <Route path='/history' element={
+          <ProtectedRoute>
+            <HistoryPage />
           </ProtectedRoute>
         } />
       </Route>

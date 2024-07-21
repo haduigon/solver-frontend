@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { Navigate } from "react-router-dom";
 import Loader from "../../components/Loader";
@@ -12,7 +12,9 @@ type Props = {
 const ProtectedRoute: React.FC<Props> = ({ children }) => {
   const [user, setUser] = useState<any>(undefined);
 
-  const listen = onAuthStateChanged(getAuth(), (localUser) => {
+  useEffect(() => {
+    const listen = onAuthStateChanged(getAuth(), (localUser) => {
+    // debugger
     if (!localUser) {
       setUser(null);
     }
@@ -24,8 +26,9 @@ const ProtectedRoute: React.FC<Props> = ({ children }) => {
       listen();
     }
   });
+}, [])
 
-  console.log(2 % 7 );
+  console.log(2 % 7 , 'opopopopo');
   
   return (
     <div className="global-container">

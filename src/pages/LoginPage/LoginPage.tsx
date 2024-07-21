@@ -64,7 +64,7 @@ const LoginPage = () => {
     else {
       const lgn: any = await dispatch(userActions.userAuthEmailPassword(cridentials));
       if (!Object.hasOwn(lgn.payload, 'user')) {
-        console.log('undefined user');
+        // console.log('undefined user');
         setMessage('Check your cridentials');
         return;
       }
@@ -73,11 +73,6 @@ const LoginPage = () => {
 
         setTimeout(() => navigate('/chat'), 1000)
 
-        // client.get('/home', {
-        //   headers: {
-        //     "authorization": lgn.payload.user.stsTokenManager.accessToken,
-        //   }
-        // }).then(resp => console.log(resp))
       }
     }
   }
@@ -86,7 +81,7 @@ const LoginPage = () => {
     <div className={`global-container`}>
       {message && <Message message={message} />}
       <div className={`global-box`}>
-        <div>
+        <div className="imgBox">
           <img src={pic} alt='pic' />
         </div>
         <div className={`global-text-block mb-40 mt-40 mainText`}>
@@ -103,11 +98,7 @@ const LoginPage = () => {
         <div >
           <Button name='login' onClick={handleLogin} />
         </div>
-        {/* <div className={`global-text-block mainText`}>
 
-          Login via 
-
-        </div> */}
         <div className='mt-40'>
           <SocialNetworkLoginBox />
         </div>

@@ -4,6 +4,7 @@ import cross from '../../assets/img/cross.svg'
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import * as appActions from '../../features/app';
 import Logout from '../Logout';
+import { Link } from 'react-router-dom';
 
 const Menu = () => {
   const dispatch = useAppDispatch();
@@ -18,44 +19,40 @@ const Menu = () => {
   }
   return (
     <div className={`${styles.box}`}>
-      <div className={`${styles.text} ${styles.item}`}>
-        Profile
+      <div className={`${styles.item}`}>
+        <Link to='/profile' className={`${styles.text} `}>Profile</Link>
         <div className={`${styles.cross}`} onClick={clickHandler}>
-        <img src={cross} alt='close' />
+          <img src={cross} alt='close' />
+        </div>
       </div>
-      </div>
-      <div className={`${styles.text} ${styles.item}`}>
+      {/* <div className={`${styles.text} ${styles.item}`}>
         Chat
+      </div> */}
+      <div className={`${styles.item}`}>
+        <Link to='/chat' className={`${styles.text} `}>Chat</Link>
       </div>
-      <div className={`${styles.text} ${styles.item}`}>
-        History
+      <div className={`${styles.item}`}>
+        <Link to='' className={`${styles.text} `}>History</Link>
       </div>
-      <div className={`${styles.text} ${styles.item}`}>
-        Contact information
+      <div className={`${styles.item}`}>
+        <Link to='' className={`${styles.text} `}>Subscription</Link>
       </div>
-      <div className={`${styles.text} ${styles.item}`}>
-        Subscription
+      <div className={`${styles.item}`}>
+        <Link to='' className={`${styles.text} `}>Contacts</Link>
       </div>
-
-
-
-
-
-
-
 
 
       <div className={`${styles.logout}`}>
         <div
-        className={`${styles.text} ${styles.item}`}
-        onClick={clickHandler2}
-      >
-        <div className={`${styles.logout__text}`}>Log out</div>
-      </div>
+          className={`${styles.text} ${styles.item}`}
+          onClick={clickHandler2}
+        >
+          <div className={`${styles.logout__text}`}>Log out</div>
+        </div>
       </div>
       {showLogout && (
-          <Logout />
-        )}
+        <Logout />
+      )}
     </div>
   )
 }

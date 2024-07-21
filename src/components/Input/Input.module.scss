@@ -1,13 +1,29 @@
+@use "../../mixins";
+
 .inpt {
   background-color: #325F58;
   border-radius: 22px;
-  width: 400px;
+  width: 40vw;
+  max-width: 400px;
+  // width: 400px;
   height: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: bold;
-  font-size: 30px;  
+  font-size: 30px;
+
+  @include mixins.Tablet {
+    font-size: 20px;
+    width: 50vw;
+    max-width: 400px;
+  }
+
+  @include mixins.Mobile {
+    font-size: 20px;
+    width: 70vw;
+    max-width: 400px;
+  }
 }
 
 .inputField {
@@ -29,6 +45,7 @@
 .border {
   border: 4px solid #FF7676;
 }
-.border input::placeholder{
-    color: #FF7676;
+
+.border input::placeholder {
+  color: #FF7676;
 }

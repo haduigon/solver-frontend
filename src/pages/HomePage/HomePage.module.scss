@@ -1,7 +1,4 @@
-// @font-face {
-//   font-family: "Jura";
-//   src: local("Jura"), url("../../assets/fonts/Jura-VariableFont_wght.ttf") format("opentype");
-// }
+@use "../../mixins";
 
 .container {
   background-color: #15272b;
@@ -22,4 +19,16 @@
 .textBlock {
   max-width: 600px;
   // position: relative;
+}
+
+.imgBox {
+  width: fit-content;
+
+  @include mixins.Tablet {
+    width: 70vw;
+  }
+
+  @include mixins.Mobile { 
+    width: 60vw;
+  }
 }

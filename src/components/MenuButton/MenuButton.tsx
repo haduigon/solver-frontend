@@ -10,6 +10,7 @@ const MenuButton = () => {
 
   function clickHandler() {
     console.log(state);
+    // dispatch(appActions.setShowMenu(true));
     dispatch(appActions.setShowMenu(!state.showMenu));
   }
 

@@ -1,3 +1,5 @@
+@use "./mixins";
+
 .mb-36 {
   margin-bottom: 36px;
 }
@@ -40,9 +42,28 @@
 
 .global-text-block {
   max-width: 600px;
+  padding-left: 2%;
+  padding-right: 2%;
   // position: relative;
 }
 
 .email {
   text-transform: lowercase;
+}
+
+.textBlock {
+  max-width: 600px;
+  // position: relative;
+}
+
+.imgBox {
+  width: fit-content;
+
+  @include mixins.Tablet {
+    width: 70vw;
+  }
+
+  @include mixins.Mobile {
+    width: 60vw;
+  }
 }

@@ -7,6 +7,7 @@ import { Root } from './Root';
 import { Provider } from 'react-redux';
 import { store } from './app/store'
 import './global.scss';
+import './mixins.scss';
 
 const root = createRoot(document.getElementById('root') as HTMLDivElement);
 

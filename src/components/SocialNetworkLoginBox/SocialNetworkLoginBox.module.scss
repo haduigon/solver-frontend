@@ -1,5 +1,13 @@
+@use "../../mixins";
+
 .box {
   width: 264px;
   display: flex;
   justify-content: space-between;
+
+  @include mixins.Mobile {
+    font-size: 20px;
+    width: 70vw;
+    max-width: 400px;
+  }
 }

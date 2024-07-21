@@ -3,7 +3,8 @@
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import pic from '../../assets/img/panda3.svg'
 import Button from '../../components/Button';
-import { NavLink, useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom';
+// import styles from './HomePage.module.scss';
 // import { useEffect } from 'react';
 
 const HomePage = () => {
@@ -23,7 +24,7 @@ const HomePage = () => {
   return (
     <div className={`global-container`}>
       <div className={`global-box`}>
-        <div>
+        <div className={`imgBox`}>
           <img src={pic}  alt='pic'/>
         </div>
         <div className={`global-text-block mb-40 mt-40 mainText`}>
