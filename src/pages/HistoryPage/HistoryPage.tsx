@@ -26,10 +26,10 @@ const HistoryPage = () => {
   return (
     <div className={`${styles.box}`}>
       <div className={`${styles.item}`}>
-        <Link to='/profile' className={`${styles.text}`}>History</Link>
+        <Link to='/profile' className={`menu-text`}>History</Link>
         <label className={`${styles.backButtonBox}`} onClick={() => navigate(-1)}>
           <div className={`${styles.back}`} >
-            <div className={`${styles.text}`}>Back</div>
+            <div className={`menu-text`}>Back</div>
           </div>
           <div className={`${styles.polygonBox}`}>
             <img src={backButton} alt='back button' style={{
@@ -42,7 +42,7 @@ const HistoryPage = () => {
       {app.history.length > 0 && (
         app.history.map((dialog: any) => 
           <div className={`${styles.item}`} key={dialog.date}>
-            <Link to='/history/2' className={`${styles.text}`}>{dialog.request}</Link>
+            <Link to='/history/2' className={`menu-text`}>{dialog.request}</Link>
           </div>
         )
       )}

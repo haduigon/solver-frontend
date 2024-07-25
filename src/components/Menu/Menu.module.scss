@@ -12,21 +12,6 @@
   z-index: 1;
 }
 
-.text {
-  color: #15272B;
-  text-align: start;
-  text-transform: uppercase;
-  font-size: 140%;
-
-  @include mixins.Tablet {
-    font-size: 120%;
-  }
-  
-  @include mixins.Mobile {
-    font-size: 100%;
-  }
-}
-
 .item {
   margin-top: 5%;
   display: flex;

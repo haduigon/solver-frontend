@@ -11,10 +11,10 @@ const ProfilePage = () => {
   return (
     <div className={`${styles.box}`}>
       <div className={`${styles.item}`}>
-        <Link to='/profile' className={`${styles.text}`}>Profile</Link>
+        <Link to='/profile' className={`menu-text`}>Profile</Link>
         <label className={`${styles.backButtonBox}`} onClick={() => navigate(-1)}>
           <div className={`${styles.back}`} >
-            <div  className={`${styles.text}`}>Back</div>
+            <div  className={`menu-text`}>Back</div>
           </div>
           <div className={`${styles.polygonBox}`}>
             <img src={backButton} alt='back button' style={{
@@ -25,17 +25,17 @@ const ProfilePage = () => {
       </div>
 
       <div className={`${styles.item} `}>
-        <Link to='' className={`${styles.text} ${styles.picBox}`}>
+        <Link to='' className={`menu-text ${styles.picBox}`}>
           <img src={picture} alt='drug your foto' className={`${styles.pic}`} />
         </Link>
       </div>
 
       <div className={`${styles.item} mt-30vh`}>
-        <Link to='' className={`${styles.text}`}>Name</Link>
+        <Link to='' className={`menu-text`}>Name</Link>
       </div>
 
       <div className={`${styles.item}`}>
-        <Link to='' className={`${styles.text}`}>Language</Link>
+        <Link to='' className={`menu-text`}>Language</Link>
       </div>
 
 

@@ -20,7 +20,7 @@ const Menu = () => {
   return (
     <div className={`${styles.box}`}>
       <div className={`${styles.item}`}>
-        <Link to='/profile' className={`${styles.text} `}>Profile</Link>
+        <Link to='/profile' className={`menu-text`}>Profile</Link>
         <div className={`${styles.cross}`} onClick={clickHandler}>
           <img src={cross} alt='close' style={{
             display: 'block'
@@ -29,22 +29,22 @@ const Menu = () => {
       </div>
 
       <div className={`${styles.item}`}>
-        <Link to='/chat' className={`${styles.text} `}>Chat</Link>
+        <Link to='/chat' className={`menu-text`}>Chat</Link>
       </div>
       <div className={`${styles.item}`}>
-        <Link to='/history' className={`${styles.text} `}>History</Link>
+        <Link to='/history' className={`menu-text`}>History</Link>
       </div>
       <div className={`${styles.item}`}>
-        <Link to='' className={`${styles.text} `}>Subscription</Link>
+        <Link to='' className={`menu-text`}>Subscription</Link>
       </div>
       <div className={`${styles.item}`}>
-        <Link to='' className={`${styles.text} `}>Contacts</Link>
+        <Link to='' className={`menu-text`}>Contacts</Link>
       </div>
 
 
       <div className={`${styles.logout}`}>
         <div
-          className={`${styles.text} ${styles.item}`}
+          className={`menu-text ${styles.item}`}
           onClick={clickHandler2}
         >
           <div className={`${styles.logout__text}`}>Log out</div>

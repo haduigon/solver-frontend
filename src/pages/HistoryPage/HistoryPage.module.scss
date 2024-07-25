@@ -1,3 +1,5 @@
+@use "../../mixins";
+
 .box {
   position: absolute;
   left: 0;
@@ -8,13 +10,6 @@
   padding-left: 10%;
   padding-right: 10%;
   z-index: 1;
-}
-
-.text {
-  color: #15272B;
-  text-align: start;
-  text-transform: uppercase;
-  font-size: 140%;
 }
 
 .item {
