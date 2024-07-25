@@ -23,7 +23,7 @@ export const Root = () => (
         <Route path='/profile' element={
           <ProtectedRoute>
             <ProfilePage />
-           </ProtectedRoute>
+          </ProtectedRoute>
         } />
         <Route path='/chat' element={
           <ProtectedRoute>
@@ -33,6 +33,11 @@ export const Root = () => (
         <Route path='/history' element={
           <ProtectedRoute>
             <HistoryPage />
+          </ProtectedRoute>
+        } />
+        <Route path='/history/:id?' element={
+          <ProtectedRoute>
+           <ChatPage />
           </ProtectedRoute>
         } />
       </Route>

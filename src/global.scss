@@ -67,3 +67,14 @@
     width: 60vw;
   }
 }
+
+.mt-30vh {
+  margin-top: 35vh;
+
+  @include mixins.Tablet {
+    margin-top: 35vh;
+  }
+  @include mixins.Mobile {
+    margin-top: 30vh;
+  }
+}

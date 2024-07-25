@@ -22,17 +22,17 @@ const Menu = () => {
       <div className={`${styles.item}`}>
         <Link to='/profile' className={`${styles.text} `}>Profile</Link>
         <div className={`${styles.cross}`} onClick={clickHandler}>
-          <img src={cross} alt='close' />
+          <img src={cross} alt='close' style={{
+            display: 'block'
+          }}/>
         </div>
       </div>
-      {/* <div className={`${styles.text} ${styles.item}`}>
-        Chat
-      </div> */}
+
       <div className={`${styles.item}`}>
         <Link to='/chat' className={`${styles.text} `}>Chat</Link>
       </div>
       <div className={`${styles.item}`}>
-        <Link to='' className={`${styles.text} `}>History</Link>
+        <Link to='/history' className={`${styles.text} `}>History</Link>
       </div>
       <div className={`${styles.item}`}>
         <Link to='' className={`${styles.text} `}>Subscription</Link>

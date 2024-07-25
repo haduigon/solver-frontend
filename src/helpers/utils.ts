@@ -19,6 +19,12 @@ export async function sendMessage(token: string, question: string) {
   return response.data.solver;
 }
 
+export async function getAllHistoryData() {
+  const response = await client.get('/history', {});
+
+  return response.data;
+}
+
   export function getId(email: string = '') {
       const time = new Date();
 

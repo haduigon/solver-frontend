@@ -1,6 +1,6 @@
 /* eslint-disable */
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
-import { sendMessage } from "../helpers/utils";
+import { sendMessage, getAllHistoryData } from "../helpers/utils";
 import { Message } from "../app/classes/Message";
 
 type App = {
@@ -9,6 +9,7 @@ type App = {
   response: string,
   dialog: Message[],
   messageIsTyping: boolean,
+  history: any[],
 }
 
 const initialApp: App = {
@@ -17,6 +18,7 @@ const initialApp: App = {
   response: '',
   dialog: [],
   messageIsTyping: false,
+  history: [],
 }
 
 const appSlice = createSlice({
@@ -44,8 +46,11 @@ const appSlice = createSlice({
     }); 
     builder.addCase(getAnswer.pending, (state) => {
       state.messageIsTyping = true;
+    });
+    builder.addCase(getHistory.fulfilled, (state, action) => {
+      state.history = [...action.payload];
     })
-  },
+  }
 })
 
 export default appSlice.reducer;
@@ -59,5 +64,9 @@ export const getAnswer = createAsyncThunk("app/getResponse", (data: {
   question: string,
 }) => {
   return sendMessage(data.token, data.question);
+})
+
+export const getHistory = createAsyncThunk("app/getHistory", () => {
+  return getAllHistoryData();
 })
 
