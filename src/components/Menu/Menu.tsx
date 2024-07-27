@@ -41,7 +41,6 @@ const Menu = () => {
         <Link to='' className={`menu-text`}>Contacts</Link>
       </div>
 
-
       <div className={`${styles.logout}`}>
         <div
           className={`menu-text ${styles.item}`}

@@ -14,10 +14,13 @@ const HistoryPage = () => {
   // const [history, setHistory] = useState([]);
   const dispatch = useAppDispatch();
   const app = useAppSelector(state => state.app);
+    // dispatch(appActions.getHistory());
 
   useEffect(() => {
     // client.get('/history/1', {}).then(resp => (setHistory(resp.data), console.log(resp, 'ololo')));
     dispatch(appActions.getHistory());
+    console.log('wtf');
+    
   }, []);
   const navigate = useNavigate();
   console.log(app.history, 'history');
