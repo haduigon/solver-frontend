@@ -1,5 +1,6 @@
 /* eslint-disable */
 import axios from 'axios';
+import { v4 as uuidv4 } from 'uuid';
 
 const apiUrl = 'https://backend-frontend-solver.onrender.com';
 
@@ -26,8 +27,8 @@ export async function getAllHistoryData() {
 }
 
   export function getId(email: string = '') {
-      const time = new Date();
+    const time = uuidv4();
 
-    const id = `${email} ${time.toDateString()} ${time.getHours()} ${time.getMinutes()} ${time.getSeconds()} ${time.getMilliseconds()}`;
+    const id = `${email}+${time}}`;
     return id.replaceAll(' ', '-');
   }

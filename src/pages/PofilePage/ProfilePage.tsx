@@ -25,9 +25,9 @@ const ProfilePage = () => {
       </div>
 
       <div className={`${styles.item} `}>
-        <Link to='' className={`menu-text ${styles.picBox}`}>
+        <div className={`menu-text ${styles.picBox}`}>
           <img src={picture} alt='drug your foto' className={`${styles.pic}`} />
-        </Link>
+        </div>
       </div>
 
       <div className={`${styles.item} mt-30vh`}>

@@ -4,27 +4,21 @@ import styles from './HistoryPage.module.scss';
 import backButton from '../../assets/img/backButton.svg'
 import {
   useEffect,
-  // useState
 } from 'react';
-// import { client } from '../../helpers/utils';
 import * as appActions from '../../features/app';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
+// import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 const HistoryPage = () => {
-  // const [history, setHistory] = useState([]);
   const dispatch = useAppDispatch();
   const app = useAppSelector(state => state.app);
-    // dispatch(appActions.getHistory());
 
   useEffect(() => {
-    // client.get('/history/1', {}).then(resp => (setHistory(resp.data), console.log(resp, 'ololo')));
-    dispatch(appActions.getHistory());
-    console.log('wtf');
-    
+    // onAuthStateChanged(getAuth(), () => dispatch(appActions.getHistory()));
+    dispatch(appActions.getHistory())
+    console.log('historypage', app.history)
   }, []);
   const navigate = useNavigate();
-  console.log(app.history, 'history');
-  
 
   return (
     <div className={`${styles.box}`}>

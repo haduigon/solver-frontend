@@ -48,7 +48,7 @@ const appSlice = createSlice({
       state.messageIsTyping = true;
     });
     builder.addCase(getHistory.fulfilled, (state, action) => {
-      state.history = [...action.payload];
+      state.history = action.payload;
     })
   }
 })
