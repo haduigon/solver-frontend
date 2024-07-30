@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 const Menu = () => {
   const dispatch = useAppDispatch();
   const { showLogout } = useAppSelector(state => state.app)
+  const app = useAppSelector(state => state.app)
 
   function clickHandler() {
     dispatch(appActions.setShowMenu(false));
@@ -17,6 +18,9 @@ const Menu = () => {
   function clickHandler2() {
     dispatch(appActions.setShowLogout(true));
   }
+
+  console.log(app);
+  
   return (
     <div className={`${styles.box}`}>
       <div className={`${styles.item}`}>

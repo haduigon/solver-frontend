@@ -5,7 +5,10 @@ import { useNavigate } from 'react-router-dom';
 import { logout } from '../../firebase/firebase';
 import { useState } from 'react';
 import styles from './Logout.module.scss';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import {
+  useAppDispatch,
+  // useAppSelector
+} from '../../app/hooks';
 import * as appActions from '../../features/app'
 // import Message from '../Message';
 
@@ -14,7 +17,7 @@ const Logout = () => {
   const navigate = useNavigate()
   const [render, setRender] = useState(false);
   const dispatch = useAppDispatch();
-  const state = useAppSelector(state => state.app)
+  // const state = useAppSelector(state => state.app)
   
    function clickHandler() {
      logout();
@@ -23,7 +26,7 @@ const Logout = () => {
    }
   
   function cancel222() {
-    console.log('c a n c e l', state);
+    // console.log('c a n c e l', state);
     
     dispatch(appActions.setShowLogout(false));
     // dispatch(appActions.setShowMenu(false));
@@ -36,13 +39,13 @@ const Logout = () => {
   
   return (
     <div className={`${styles.box} ${styles.text}`}>
-      Are you sure?
+      {/* Are you sure? */}
       <div>
         <div className={`${styles.text}`} onClick={clickHandler}>
-      I`m leaving
+      Log out
         </div>
         <div onClick={cancel222} className={`${styles.text}`}>
-          I`m with you !
+      Stay in app
         </div>
       </div>
     </div>

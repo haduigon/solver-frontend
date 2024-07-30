@@ -5,17 +5,20 @@ import backButton from '../../assets/img/backButton.svg'
 import {
   useEffect,
 } from 'react';
-import * as appActions from '../../features/app';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
+// import * as appActions from '../../features/app';
+import {
+  // useAppDispatch,
+  useAppSelector
+} from '../../app/hooks';
 // import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 const HistoryPage = () => {
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
   const app = useAppSelector(state => state.app);
 
   useEffect(() => {
     // onAuthStateChanged(getAuth(), () => dispatch(appActions.getHistory()));
-    dispatch(appActions.getHistory())
+    // dispatch(appActions.getHistory())
     console.log('historypage', app.history)
   }, []);
   const navigate = useNavigate();
