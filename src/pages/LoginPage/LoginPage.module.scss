@@ -1,0 +1,11 @@
+@use "../../mixins";
+
+.header {
+  margin-top: 40px;
+  margin-bottom: 40px;
+
+  @include mixins.Mobile {
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+}

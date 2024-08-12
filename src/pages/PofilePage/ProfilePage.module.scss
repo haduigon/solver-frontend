@@ -1,3 +1,5 @@
+@use "../../mixins";
+
 .box {
   position: absolute;
   left: 0;
@@ -5,8 +7,8 @@
   background-color: #8BC4AD;
   width: 80%;
   height: 100%;
-  padding-left: 10%;
-  padding-right: 10%;
+  // padding-left: 10%;
+  // padding-right: 10%;
   z-index: 1;
 }
 
@@ -14,6 +16,8 @@
   margin-top: 5%;
   display: flex;
   justify-content: space-between;
+  padding-left: 10%;
+  padding-right: 10%;
 }
 
 .back {
@@ -45,7 +49,7 @@
 }
 
 .picBox {
-  position: absolute;
+  position: relative;
   left: 0;
   width: 100%;
   display: flex;
@@ -54,6 +58,7 @@
   background-color: #15272B;
   padding-top: 5%;
   padding-bottom: 5%;
+  // z-index: 2;
 }
 
 .backButtonBox {
@@ -67,5 +72,13 @@
 }
 
 .pic {
-  width: 40vw;
+  width: fit-content;
+  
+  @include mixins.Tablet {
+    width: 30vw;
+  }
+
+  @include mixins.Mobile {
+    width: 25vw;
+  }
 }

@@ -16,6 +16,6 @@ export class Message {
     this.type = type;
     this.body = body;
     this.user = auth.currentUser?.email;
-    this.id = getId(this.user);
+    this.id = getId(this.user);    
   }
  }

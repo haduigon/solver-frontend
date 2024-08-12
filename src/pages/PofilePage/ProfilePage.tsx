@@ -1,9 +1,8 @@
 /* eslint-disable */
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './ProfilePage.module.scss';
-import picture from '../../assets/img/backImg.svg'
-import backButton from '../../assets/img/backButton.svg'
-// import picture from '../../assets/img/Ellipse2.svg'
+import picture from '../../assets/img/backImg.svg';
+import backButton from '../../assets/img/backButton.svg';
 
 const ProfilePage = () => {
   const navigate = useNavigate();
@@ -24,13 +23,13 @@ const ProfilePage = () => {
         </label>
       </div>
 
-      <div className={`${styles.item} `}>
+      <div className={`mt-5`}>
         <div className={`menu-text ${styles.picBox}`}>
           <img src={picture} alt='drug your foto' className={`${styles.pic}`} />
         </div>
       </div>
 
-      <div className={`${styles.item} mt-30vh`}>
+      <div className={`${styles.item}`}>
         <Link to='' className={`menu-text`}>Name</Link>
       </div>
 
@@ -46,7 +45,7 @@ const ProfilePage = () => {
 
       <div className={`${styles.email}`}>
         <div className={`${styles.item}`}>
-          <Link to='' className={`${styles.text}`}>email</Link>
+          <Link to='' className={`menu-text`}>email</Link>
         </div>
       </div>
 

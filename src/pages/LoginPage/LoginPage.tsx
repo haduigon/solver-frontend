@@ -1,10 +1,8 @@
 /* eslint-disable */
-// import styles from '../HomePage/HomePage.module.scss';
 import pic from '../../assets/img/red2.svg'
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import { useState } from 'react';
-// import { client } from '../../helpers/utils';
 import {
   useAppDispatch,
   useAppSelector,
@@ -13,13 +11,12 @@ import * as errorActions from '../../features/error';
 import * as userActions from '../../features/user'
 import Loader from '../../components/Loader';
 import Message from '../../components/Message';
-// import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import SocialNetworkLoginBox from '../../components/SocialNetworkLoginBox';
 import { useNavigate } from 'react-router-dom';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import styles from "./LoginPage.module.scss";
 
 const LoginPage = () => {
-
   const [cridentials, setCridentials] = useState({
     email: '',
     password: '',
@@ -64,7 +61,6 @@ const LoginPage = () => {
     else {
       const lgn: any = await dispatch(userActions.userAuthEmailPassword(cridentials));
       if (!Object.hasOwn(lgn.payload, 'user')) {
-        // console.log('undefined user');
         setMessage('Check your cridentials');
         return;
       }
@@ -84,7 +80,7 @@ const LoginPage = () => {
         <div className="imgBox">
           <img src={pic} alt='pic' />
         </div>
-        <div className={`global-text-block mb-40 mt-40 mainText`}>
+        <div className={`global-text-block ${styles.header} mainText`}>
 
           Login page
           {showLoader && <Loader />}
