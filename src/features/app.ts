@@ -45,6 +45,7 @@ const appSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getAnswer.fulfilled, (state, action) => {
       const newR = new Message('response', action.payload);
+      console.log(action.payload, 'payload in redux')
       state.dialog.push(JSON.parse(JSON.stringify(newR)));
       state.messageIsTyping = false;
     }); 

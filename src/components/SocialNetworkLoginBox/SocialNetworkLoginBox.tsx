@@ -7,8 +7,8 @@ import styles from './SocialNetworkLoginBox.module.scss';
 const SocialNetworkLoginBox = () => {
   return (
     <div className={styles.box}>
-      <SocialNetworkLogin image={facebookPicture} />
-      <SocialNetworkLogin image={googlePicture} />
+      <SocialNetworkLogin image={facebookPicture} name='facebook'/>
+      <SocialNetworkLogin image={googlePicture} name='google'/>
       <SocialNetworkLogin image={githubPicture} name='github' />
     </div>
   );

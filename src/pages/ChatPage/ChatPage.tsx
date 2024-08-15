@@ -16,7 +16,7 @@ const ChatPage = () => {
 
   useEffect(() => {
     dispatch(appActions.setShowMenu(false));
-  }, [])
+  }, []);
   
   useEffect(() => {
        const newHistory = app.selectedHistory?.map((elem: any) => {
@@ -32,11 +32,11 @@ const ChatPage = () => {
     setHistoryDialog(history2?.reverse());
   }, [appState.selectedHistory])
 
-
+  console.log(app.dialog, 'shat page')
   return (
     <div className={`${styles.box} mainText`}>
 
-      <div className={`${styles.flexBox} mainText`}>
+      <div className={`${styles.flexBox} mainText`} >
 
         <div style={{
           overflowY: 'scroll',
