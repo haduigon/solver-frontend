@@ -4,12 +4,15 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import pic from '../../assets/img/panda3.svg'
 import Button from '../../components/Button';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useAppSelector } from '../../app/hooks';
 // import styles from './HomePage.module.scss';
 // import { useEffect } from 'react';
 
 const HomePage = () => {
+    const { fbAuthToken } = useAppSelector(state => state.user);
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const listenAuth = onAuthStateChanged(getAuth(), (user2) => {
     if (user2) {
@@ -21,6 +24,15 @@ const HomePage = () => {
     }
   });
 
+   useEffect(() => {
+     if (fbAuthToken.length > 0) {
+      console.log('what is about navigation? home page');
+      
+      navigate('/chat');
+    }
+  }, [fbAuthToken]);
+  console.log(fbAuthToken, 'fbAuthToken HOMEPAGE');
+  
   return (
     <div className={`global-container`}>
       <div className={`global-box`}>

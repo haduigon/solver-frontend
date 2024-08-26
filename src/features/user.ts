@@ -3,24 +3,31 @@ import {
   createAsyncThunk, createSlice,
   isFulfilled,
   isPending,
-  isRejected
+  isRejected,
+  PayloadAction
 } from "@reduxjs/toolkit";
 import { logInWithEmailAndPassword, createUserEmailPassword, logout, loginWithGoogle } from '../firebase/firebase';
 
 type User = {
   isLoading: boolean,
   hasError: boolean,
+  fbAuthToken: string,
 }
 
 const initialUser: User = {
   isLoading: false,
   hasError: false,
+  fbAuthToken: '',
 }
 
 const userSlice = createSlice({
   name: "user",
   initialState: initialUser,
-  reducers: {},
+  reducers: {
+    setFbAuthToken: (state, action: PayloadAction<string>) => {
+      state.fbAuthToken = action.payload;
+    }
+  },
   extraReducers: (builder) => {
     builder.addMatcher(
       isPending(userAuthEmailPassword, userCreateEmailPassword),
@@ -43,7 +50,7 @@ const userSlice = createSlice({
   }
 })
 export default userSlice.reducer;
-
+export const { setFbAuthToken } = userSlice.actions;
 export const userAuthEmailPassword = createAsyncThunk("user/auth", (cridentials: {
   email: string,
   password: string,

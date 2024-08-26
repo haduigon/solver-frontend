@@ -2,7 +2,7 @@
 import styles from './SocialNetworkLogin.module.scss';
 import classNames from 'classnames';
 import * as userActions from '../../features/user';
-import { useAppDispatch } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 // import FacebookLogin from 'react-facebook-login';
 import facebookPicture from '../../assets/img/fb.svg';
 // import TiSocialFacebookCircular from 'react-icons/lib/ti/social-facebook-circular';
@@ -11,6 +11,8 @@ import facebookPicture from '../../assets/img/fb.svg';
 // import FB from 'fb';
 
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 type Props = {
   image: string,
@@ -30,13 +32,25 @@ const SocialNetworkLogin: React.FC<Props> = ({ image, name }) => {
   const color = styles.back;
   const dispatch = useAppDispatch();
 
+  const navigate = useNavigate()
+
   function googleLogin() {
     dispatch(userActions.userGoogleLogin());
   }
-
-  const handleFbCall = (response: any) => {
-    console.log(response, 'fbcall response');
+  const { fbAuthToken } = useAppSelector(state => state.user);
+  const handleFbCall = function(response: any) {
+    console.log('is it called at all');
+    console.log(response, 'fb response');
+    dispatch(userActions.setFbAuthToken(response.accessToken))
+    navigate('/chat')
   }
+  console.log(fbAuthToken, 'fbcall response');
+  
+  useEffect(() => {
+    if (fbAuthToken.length > 0) {
+      navigate('/chat')
+    }
+  }, [])
 
   if (name === 'facebook') {
     return (
@@ -44,17 +58,23 @@ const SocialNetworkLogin: React.FC<Props> = ({ image, name }) => {
         // buttonStyle={{ padding: "6px" }}
         appId="1253536009352522"  // we need to get this from facebook developer console by setting the app.
         autoLoad={false}
-        fields="name,email,picture"
+        fields="name"
         callback={handleFbCall}
-        render={renderProps => (
-          <div onClick={renderProps.onClick} >
-            <img src={facebookPicture} alt="Facebook icon" />
-            
-          </div>
-        )}
+        // onClick={handleFbCall}
+        render={
+          renderProps => (
+            <div onClick={() => {
+              console.log('test click');
+              handleFbCall
+              renderProps.onClick();
+            }}>
+              <img src={facebookPicture} alt="Facebook icon" />
+            </div>
+          )
+        }
         // cssClass={styles.icon} // Apply custom styles using this prop
 // 
-        // icon={<img src={facebookPicture} alt="Facebook icon" className={styles.icon} />}
+        // icon={}
         // redirectUri='/chat'
       />
     );
