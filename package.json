@@ -25,8 +25,8 @@
     "web-vitals": "^1.1.1"
   },
   "scripts": {
+    "start": "export HTTPS=true&&SSL_CRT_FILE=/Users/igorkhlyupin/Dropbox/2.0/JS/solver-frontend/src/assets/ssl/localhost.crt&&SSL_KEY_FILE=/Users/igorkhlyupin/Dropbox/2.0/JS/solver-frontend/src/assets/ssl/localhost.key react-scripts start",
     "lint": "npm run format && eslint ./src --fix",
-    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

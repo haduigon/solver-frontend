@@ -7,3 +7,12 @@
   justify-content: center;
   align-items: center;
 }
+
+.icon {
+  display: none;
+  all: unset;
+  background-image: url('../../assets/img/fb.svg');
+  width: fit-content;
+  height: fit-content;
+  background-repeat: no-repeat;
+}
