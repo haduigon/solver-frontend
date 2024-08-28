@@ -1,15 +1,10 @@
 /* eslint-disable */
 import styles from './SocialNetworkLogin.module.scss';
-import classNames from 'classnames';
 import * as userActions from '../../features/user';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 // import FacebookLogin from 'react-facebook-login';
 import facebookPicture from '../../assets/img/fb.svg';
-// import TiSocialFacebookCircular from 'react-icons/lib/ti/social-facebook-circular';
-
-// import { useEffect } from 'react';
-// import FB from 'fb';
-
+import GitHubLogin from 'react-github-login';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -29,7 +24,7 @@ type Props = {
 
 
 const SocialNetworkLogin: React.FC<Props> = ({ image, name }) => {
-  const color = styles.back;
+
   const dispatch = useAppDispatch();
 
   const navigate = useNavigate()
@@ -80,11 +75,25 @@ const SocialNetworkLogin: React.FC<Props> = ({ image, name }) => {
     );
   }
 
+  if (name === "github") {
+    return (
+      <div
+        
+      >
+        <GitHubLogin
+          className={styles.back}
+          buttonText={
+          
+            <img src={image} alt="logo" />
+          
+        } />
+      </div>
+    )
+  }
+
+
   return (
     <div
-      className={classNames({
-        [color]: name === 'github',
-      })}
       onClick={googleLogin}
     >
       <img src={image} alt="logo" />

@@ -19,7 +19,7 @@ const ChatPage = () => {
   }, []);
   
   useEffect(() => {
-       const newHistory = app.selectedHistory?.map((elem: any) => {
+      const newHistory = app.selectedHistory?.map((elem: any) => {
       const arr = [];
       const req = new Message('request', elem.request);
       const resp = new Message('response', elem.response);
@@ -32,7 +32,10 @@ const ChatPage = () => {
     setHistoryDialog(history2?.reverse());
   }, [appState.selectedHistory])
 
-  console.log(app.dialog, 'shat page')
+  // console.log(app.dialog, 'shat page')
+  const data = ['microsoft', '99', 'macos']
+    const { 1: price } = data;
+  console.log(price, 'priice')
   return (
     <div className={`${styles.box} mainText`}>
 
