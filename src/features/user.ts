@@ -4,30 +4,24 @@ import {
   isFulfilled,
   isPending,
   isRejected,
-  PayloadAction
 } from "@reduxjs/toolkit";
 import { logInWithEmailAndPassword, createUserEmailPassword, logout, loginWithGoogle } from '../firebase/firebase';
+import { FacebookAuthProvider, GoogleAuthProvider } from "firebase/auth";
 
 type User = {
   isLoading: boolean,
   hasError: boolean,
-  fbAuthToken: string,
 }
 
 const initialUser: User = {
   isLoading: false,
   hasError: false,
-  fbAuthToken: '',
 }
 
 const userSlice = createSlice({
   name: "user",
   initialState: initialUser,
-  reducers: {
-    setFbAuthToken: (state, action: PayloadAction<string>) => {
-      state.fbAuthToken = action.payload;
-    }
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addMatcher(
       isPending(userAuthEmailPassword, userCreateEmailPassword),
@@ -50,7 +44,7 @@ const userSlice = createSlice({
   }
 })
 export default userSlice.reducer;
-export const { setFbAuthToken } = userSlice.actions;
+
 export const userAuthEmailPassword = createAsyncThunk("user/auth", (cridentials: {
   email: string,
   password: string,
@@ -65,8 +59,8 @@ export const userCreateEmailPassword = createAsyncThunk("user/create", (cridenti
   return createUserEmailPassword(cridentials.email, cridentials.password)
 });
 
-export const userGoogleLogin = createAsyncThunk("user/authWithGoogle", () => {
-  return loginWithGoogle();
+export const userGoogleLogin = createAsyncThunk("user/authWithGoogle",async (provider: GoogleAuthProvider | FacebookAuthProvider) => {
+  return loginWithGoogle(provider);
 })
 
 export const userLogout = () => {

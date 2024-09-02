@@ -28,7 +28,10 @@ const LoginPage = () => {
   const showLoader = useAppSelector(state => state.user.isLoading);
   const [message, setMessage] = useState<null | string>(null);
   const navigate = useNavigate();
-  const { fbAuthToken } = useAppSelector(state => state.user);
+
+  const test = useAppSelector(state => state);
+
+  console.log(test, 'state login page')
 
   const listenAuth = onAuthStateChanged(getAuth(), (user2) => {
     if (user2) {
@@ -50,7 +53,7 @@ const LoginPage = () => {
         [name]: cridential,
       }));
     }
-  console.log(fbAuthToken, 'fbAuthToken LOGINPAGE');
+
   async function handleLogin() {
     if (!cridentials.email.match(regexp)) {
       dispatch(errorActions.setEmailError(true));

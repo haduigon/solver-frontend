@@ -7,6 +7,7 @@ import {
   signOut,
   signInWithPopup,
   GoogleAuthProvider,
+  FacebookAuthProvider,
 } from "firebase/auth";
 
 const firebaseConfig = {
@@ -21,7 +22,6 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-const provider = new GoogleAuthProvider()
 
 async function logInWithEmailAndPassword(email: string, password: string) {
   try {
@@ -41,18 +41,30 @@ async function createUserEmailPassword(email: string, password: string) {
   }
 }
 
-async function loginWithGoogle() {
-  const login = await signInWithPopup(auth, provider);
-  return JSON.parse(JSON.stringify(login))
+async function loginWithGoogle(provider2: GoogleAuthProvider | FacebookAuthProvider) {
+  console.log( 'before login data insade firebase');
+
+  try {
+  const login = await signInWithPopup(auth, provider2).then(res => console.log(res, 'firebase'))
+  console.log(login, 'login data insade firebase');
+
+  } catch (e) {
+    console.log(e);
+    
+  }
+  
 }
 
  function logout() {
    signOut(auth);
-}
+ }
+
+const facebook = new FacebookAuthProvider();
 
 export {
   logInWithEmailAndPassword,
   createUserEmailPassword,
   logout,
   loginWithGoogle,
+  facebook,
 };

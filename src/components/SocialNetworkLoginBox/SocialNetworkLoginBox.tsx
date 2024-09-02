@@ -1,15 +1,12 @@
 import SocialNetworkLogin from "../SocialNetworkLogin/SocialNetworkLogin";
-import facebookPicture from '../../assets/img/fb.svg';
-import googlePicture from '../../assets/img/google.svg';
-import githubPicture from '../../assets/img/github.svg';
 import styles from './SocialNetworkLoginBox.module.scss';
 
 const SocialNetworkLoginBox = () => {
   return (
     <div className={styles.box}>
-      <SocialNetworkLogin image={facebookPicture} name='facebook'/>
-      <SocialNetworkLogin image={googlePicture} name='google'/>
-      <SocialNetworkLogin image={githubPicture} name='github' />
+      <SocialNetworkLogin name='facebook'/>
+      <SocialNetworkLogin name='google'/>
+      <SocialNetworkLogin name='github' />
     </div>
   );
 };
