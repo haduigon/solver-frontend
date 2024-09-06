@@ -3,7 +3,12 @@ import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import {
   getAuth,
+  // onAuthStateChanged
 } from 'firebase/auth';
+import {
+  // useCallback,
+  // useEffect
+} from 'react';
 
 const apiUrl = 'https://backend-frontend-solver.onrender.com';
 
@@ -20,7 +25,7 @@ export async function sendMessage(token: string, question: string) {
       "Content-Type": "application/json",
       "authorization": token,
     },
-    body: JSON.stringify({ error: question })
+    body: JSON.stringify({ error: `a${question}` })
   })
  
   const res2 = await res.json();
@@ -30,13 +35,15 @@ export async function sendMessage(token: string, question: string) {
 
 export async function getAllHistoryData() {
   const token: any = getAuth().currentUser;
-  const response = await client.get('/history/0', {
+  const response = await client.get('/history/', {
     headers: {
       "authorization": token.accessToken,
     }
-  }).then(res => console.log(res, 'async utils get istory data'));
+  })
 
-  return response;
+  // console.log(response, 'rreeesponse response');
+  
+  return response.data;
 }
 
 export async function setSettings() {
@@ -56,12 +63,20 @@ export async function setSettings() {
     //   project: "string",
     // })
   }).then(resp => resp.json()).then(res2 => console.log(res2, 'current settings request'))
+  
 
   return resp;
 }
 
 export async function getDialog(id: string) {
-  const response = await client.get(`/history/${id}`, {});
+  const token = getAuth().currentUser;
+
+  const token2 = await token?.getIdToken()
+  const response: any = await client.get(`/history/${id}`, {
+    headers: {
+      "authorization": token2,
+    }
+  });
 
   return response.data;
 }

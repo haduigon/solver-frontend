@@ -8,6 +8,7 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   FacebookAuthProvider,
+  GithubAuthProvider,
 } from "firebase/auth";
 
 const firebaseConfig = {
@@ -41,16 +42,14 @@ async function createUserEmailPassword(email: string, password: string) {
   }
 }
 
-async function loginWithGoogle(provider2: GoogleAuthProvider | FacebookAuthProvider) {
+async function loginWithGoogle(provider2: GoogleAuthProvider | FacebookAuthProvider | GithubAuthProvider) {
   console.log( 'before login data insade firebase');
 
   try {
   const login = await signInWithPopup(auth, provider2).then(res => console.log(res, 'firebase'))
   console.log(login, 'login data insade firebase');
-
   } catch (e) {
-    console.log(e);
-    
+    console.log(e);    
   }
   
 }

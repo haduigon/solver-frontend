@@ -52,8 +52,8 @@ const appSlice = createSlice({
     builder.addCase(getAnswer.pending, (state) => {
       state.messageIsTyping = true;
     });
-    builder.addCase(getHistory.fulfilled, (_state, _action) => {
-      // state.history = action.payload;
+    builder.addCase(getHistory.fulfilled, (state, action) => {
+      state.history = action.payload;
     });
     builder.addCase(getDialogAsynk.fulfilled, (state, action) => {
       state.selectedHistory= action.payload;

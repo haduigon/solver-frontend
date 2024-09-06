@@ -19,10 +19,10 @@ const HistoryPage = () => {
   useEffect(() => {
     onAuthStateChanged(getAuth(), () => dispatch(appActions.getHistory()));
     dispatch(appActions.getHistory())
-    console.log('historypage',  app)
+    
   }, []);
   const navigate = useNavigate();
-  
+  console.log('historypage',  app)
   return (
     <div className={`${styles.box}`}>
       <div className={`${styles.item}`}>

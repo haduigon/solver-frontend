@@ -50,7 +50,7 @@ const ChatPage = () => {
           {appState.messageIsTyping && <Wave />}
           
           {historyDialog && (
-            historyDialog?.map((item2: any) =>
+            historyDialog.reverse()?.map((item2: any) =>
               <div key={item2.id}>
               <ChatMessage message={item2} />
               </div>
