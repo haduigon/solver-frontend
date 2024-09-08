@@ -72,7 +72,10 @@
 }
 
 .pic {
-  width: fit-content;
+  width: 260px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
   
   @include mixins.Tablet {
     width: 30vw;
