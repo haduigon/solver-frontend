@@ -2,18 +2,7 @@
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
 import { sendMessage, getAllHistoryData, getDialog, setSettings } from "../helpers/utils";
 import { Message } from "../app/classes/Message";
-
-type App = {
-  showMenu: boolean,
-  showLogout: boolean,
-  response: string,
-  dialog: Message[],
-  messageIsTyping: boolean,
-  history: any[],
-  selectedHistory: [] | null,
-}
-// const hstr = getAllHistoryData();
-// console.log(hstr, 'str');
+import { App } from "../types/types";
 
 const initialApp: App = {
   showMenu: false,
@@ -23,6 +12,7 @@ const initialApp: App = {
   messageIsTyping: false,
   history: [],
   selectedHistory: null,
+  isNewDialog: false
 }
 
 const appSlice = createSlice({
@@ -37,6 +27,9 @@ const appSlice = createSlice({
     },
     setResponse: (state, action: PayloadAction<string>) => {
       state.response = action.payload;
+    },
+    setNewDialog: (state, action: PayloadAction<boolean>) => {
+      state.isNewDialog = action.payload;
     },
     addMessage: (state, action: PayloadAction<Message>) => {
       state.dialog.push(action.payload);
@@ -66,12 +59,16 @@ export const { setShowMenu } = appSlice.actions;
 export const { setShowLogout } = appSlice.actions;
 export const { setResponse } = appSlice.actions;
 export const { addMessage } = appSlice.actions;
+export const { setNewDialog } = appSlice.actions;
 
 export const getAnswer = createAsyncThunk("app/getResponse", (data: {
   token: string,
   question: string,
+  newDialog?: boolean,
 }) => {
-  return sendMessage(data.token, data.question);
+  console.log(data, 'data in app features');
+  
+  return sendMessage(data.token, data.question, data?.newDialog);
 });
 
 export const setAppSettings = createAsyncThunk("app/setSettings", () => {

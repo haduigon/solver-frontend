@@ -14,3 +14,19 @@ export type Dialog = {
   user: {},
   messages: Message[],
 }
+
+export type App = {
+  showMenu: boolean,
+  showLogout: boolean,
+  response: string,
+  dialog: Message[],
+  messageIsTyping: boolean,
+  history: any[],
+  selectedHistory: [] | null,
+  isNewDialog: boolean,
+}
+
+export type User = {
+  isLoading: boolean,
+  hasError: boolean,
+}

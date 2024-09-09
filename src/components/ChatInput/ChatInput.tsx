@@ -8,11 +8,13 @@ import {
 } from '../../app/hooks';
 import * as appActions from '../../features/app';
 import { Message } from '../../app/classes/Message';
+import { useDetectNewDialog } from '../../helpers/utils';
 
 const ChatInput = () => {
   const [questionText, setQuestionText] = useState<string>();
   const { currentUser }: any = getAuth();
   const dispatch = useAppDispatch();
+  const detect = useDetectNewDialog();
 
   function onChangeHandler(data: string) {
     setQuestionText(data);
@@ -28,7 +30,10 @@ const ChatInput = () => {
     dispatch(appActions.getAnswer({
       token: currentUser.accessToken,
       question: `${questionText}` || '',
+      newDialog: detect,
     }));
+    // console.log('send question');
+    
   }
   
   return (

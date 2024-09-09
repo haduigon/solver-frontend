@@ -3,12 +3,8 @@ import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import {
   getAuth,
-  // onAuthStateChanged
 } from 'firebase/auth';
-import {
-  // useCallback,
-  // useEffect
-} from 'react';
+import { useAppSelector } from '../app/hooks';
 
 const apiUrl = 'https://backend-frontend-solver.onrender.com';
 
@@ -17,7 +13,20 @@ export const client = axios.create({
   withCredentials: false,
 });
 
-export async function sendMessage(token: string, question: string) {
+export function useDetectNewDialog() {
+  const app = useAppSelector(state => state);
+  if (app.app.isNewDialog || app.app.history.length === 0) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+export async function sendMessage(token: string, question: string, isDialogNew: boolean = false) {
+
+  // const isDialogNew = useDetectNewDialog();
+  // console.log(isDialogNew, 'utils new dialog');
+  const createNewDialog = isDialogNew ? 'm' : 'a';
 
   const res: any = await fetch('https://backend-frontend-solver.onrender.com/home', {
     method: "POST",
@@ -25,7 +34,7 @@ export async function sendMessage(token: string, question: string) {
       "Content-Type": "application/json",
       "authorization": token,
     },
-    body: JSON.stringify({ error: `a${question}` })
+    body: JSON.stringify({ error: `${createNewDialog}${question}` })
   })
  
   const res2 = await res.json();
@@ -41,8 +50,6 @@ export async function getAllHistoryData() {
     }
   })
 
-  // console.log(response, 'rreeesponse response');
-  
   return response.data;
 }
 
@@ -56,12 +63,12 @@ export async function setSettings() {
       "Content-Type": "application/json",
       "authorization": token.accessToken,
     },
-    // body: JSON.stringify({
-    //   uid: token.uid,
-    //   os: "string",
-    //   language: "string",
-    //   project: "string",
-    // })
+    body: JSON.stringify({
+      uid: token.uid,
+      os: "string",
+      language: "string",
+      project: "string",
+    })
   }).then(resp => resp.json()).then(res2 => console.log(res2, 'current settings request'))
   
 
