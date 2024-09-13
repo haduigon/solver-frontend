@@ -5,16 +5,18 @@ import { useState } from 'react';
 import { getAuth } from 'firebase/auth';
 import {
   useAppDispatch,
+  useAppSelector,
 } from '../../app/hooks';
 import * as appActions from '../../features/app';
 import { Message } from '../../app/classes/Message';
-import { useDetectNewDialog } from '../../helpers/utils';
+// import { useDetectNewDialog } from '../../helpers/utils';
 
 const ChatInput = () => {
   const [questionText, setQuestionText] = useState<string>();
   const { currentUser }: any = getAuth();
   const dispatch = useAppDispatch();
-  const detect = useDetectNewDialog();
+  const app = useAppSelector(state => state.app);
+  // const detect = useDetectNewDialog();
 
   function onChangeHandler(data: string) {
     setQuestionText(data);
@@ -22,6 +24,10 @@ const ChatInput = () => {
 
   function requestHandler() {
     setQuestionText('');
+
+    const detect = app.isNewDialog || app.history.length === 0
+      ? 'm'
+      : 'a';
 
     const newM = new Message('request', questionText);
 

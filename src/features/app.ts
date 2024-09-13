@@ -64,7 +64,7 @@ export const { setNewDialog } = appSlice.actions;
 export const getAnswer = createAsyncThunk("app/getResponse", (data: {
   token: string,
   question: string,
-  newDialog?: boolean,
+  newDialog?: string,
 }) => {
   console.log(data, 'data in app features');
   

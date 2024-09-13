@@ -4,7 +4,8 @@ import { v4 as uuidv4 } from 'uuid';
 import {
   getAuth,
 } from 'firebase/auth';
-import { useAppSelector } from '../app/hooks';
+import picture from '../assets/img/backImg2.png';
+// import { useAppSelector } from '../app/hooks';
 
 const apiUrl = 'https://backend-frontend-solver.onrender.com';
 
@@ -13,20 +14,7 @@ export const client = axios.create({
   withCredentials: false,
 });
 
-export function useDetectNewDialog() {
-  const app = useAppSelector(state => state);
-  if (app.app.isNewDialog || app.app.history.length === 0) {
-    return true;
-  } else {
-    return false;
-  }
-}
-
-export async function sendMessage(token: string, question: string, isDialogNew: boolean = false) {
-
-  // const isDialogNew = useDetectNewDialog();
-  // console.log(isDialogNew, 'utils new dialog');
-  const createNewDialog = isDialogNew ? 'm' : 'a';
+export async function sendMessage(token: string, question: string, isDialogNew: string = 'm') {
 
   const res: any = await fetch('https://backend-frontend-solver.onrender.com/home', {
     method: "POST",
@@ -34,7 +22,7 @@ export async function sendMessage(token: string, question: string, isDialogNew: 
       "Content-Type": "application/json",
       "authorization": token,
     },
-    body: JSON.stringify({ error: `${createNewDialog}${question}` })
+    body: JSON.stringify({ error: `${isDialogNew}${question}` })
   })
  
   const res2 = await res.json();
@@ -44,7 +32,7 @@ export async function sendMessage(token: string, question: string, isDialogNew: 
 
 export async function getAllHistoryData() {
   const token: any = getAuth().currentUser;
-  const response = await client.get('/history/', {
+  const response = await client.get('/history', {
     headers: {
       "authorization": token.accessToken,
     }
@@ -54,25 +42,31 @@ export async function getAllHistoryData() {
 }
 
 export async function setSettings() {
-
   const token: any = getAuth().currentUser;
   
-  const resp = await fetch('https://backend-frontend-solver.onrender.com/current_settings', {
+  const test = await fetch(picture);
+  
+  const picture2 = await test.blob();
+
+  const file = new FormData();
+  file.append('uid', token.uid);
+  file.append('os', 'MacOs');
+  file.append('language', 'Javascript');
+  file.append('project', 'reactjs');
+  file.append('photo', picture2);
+
+
+  const resp = await fetch('https://backend-frontend-solver.onrender.com/settings', {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
       "authorization": token.accessToken,
     },
-    body: JSON.stringify({
-      uid: token.uid,
-      os: "string",
-      language: "string",
-      project: "string",
-    })
-  }).then(resp => resp.json()).then(res2 => console.log(res2, 'current settings request'))
+    body: file,
+  });
   
+  const res = await resp.json()
 
-  return resp;
+  return res;
 }
 
 export async function getDialog(id: string) {
