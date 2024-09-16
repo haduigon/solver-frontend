@@ -10,6 +10,10 @@
 
 .mt-40 {
   margin-top: 40px;
+
+  @include mixins.Mobile {
+    margin-top: 10px;
+  }
 }
 
 .mainText {
@@ -75,6 +79,7 @@
   @include mixins.Tablet {
     margin-top: 35vh;
   }
+
   @include mixins.Mobile {
     margin-top: 30vh;
   }
