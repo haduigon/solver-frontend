@@ -7,9 +7,9 @@ import Navbar from './components/Navbar';
 
 export const App: React.FC = () => {
   const location = useLocation();
-  console.log(location.pathname === '/', 'location');
+  // console.log(location.pathname === '/', 'location');
   const myPlace = location.pathname;
-  const showNavbar = myPlace !== '/' && myPlace !== '/login' && myPlace !== 'signup'
+  const showNavbar = myPlace !== '/' && myPlace !== '/login' && myPlace !== '/signup'
   return (
     <div className="App mainText">
       {/* <Navbar /> */}
