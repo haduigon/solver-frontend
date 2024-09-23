@@ -55,7 +55,7 @@ const SignUpPage = () => {
       }
       if (lgn.payload.user.stsTokenManager.accessToken) {
         console.log(lgn.payload.user, 'lgn.payload.user');
-        setMessage('You created user. Please, Log in.')
+        setMessage('You created user. Please, Log in.');
       }
     }
   }

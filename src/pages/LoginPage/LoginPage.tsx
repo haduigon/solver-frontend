@@ -15,6 +15,7 @@ import SocialNetworkLoginBox from '../../components/SocialNetworkLoginBox';
 import { useNavigate } from 'react-router-dom';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import styles from "./LoginPage.module.scss";
+// import classNames from 'classnames';
 
 const LoginPage = () => {
   const [cridentials, setCridentials] = useState({
@@ -71,7 +72,7 @@ const LoginPage = () => {
       if (lgn.payload.user.stsTokenManager.accessToken) {
         setMessage('You successfully authorized');
 
-        setTimeout(() => navigate('/chat'), 1000)
+        setTimeout(() => navigate('/chat'), 1000);
 
       }
     }
@@ -92,6 +93,7 @@ const LoginPage = () => {
         <div className='mb-36'>
           <Input name='email' type='email' onChange={getCridentials} />
         </div>
+        {}
         <div className='mb-36'>
           <Input name='password' type='password' onChange={getCridentials} />
         </div>
