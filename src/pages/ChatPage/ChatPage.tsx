@@ -13,6 +13,27 @@ const ChatPage = () => {
   const app = useAppSelector(state => state.app);
   const [historyDialog, setHistoryDialog] = useState<Message[]>();
   const appState = useAppSelector(appState => appState.app);
+  const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
+  const [windowHeight, setWindowHeight] = useState(window.innerHeight);
+
+  useEffect(() => {
+        const handleResize = () => {
+      const currentHeight = window.innerHeight;
+      // Check if the height has decreased, indicating the keyboard is likely open
+      if (currentHeight < windowHeight) {
+        setIsKeyboardOpen(true);
+      } else {
+        setIsKeyboardOpen(false);
+      }
+      setWindowHeight(currentHeight);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [windowHeight])
 
   useEffect(() => {
     dispatch(appActions.setShowMenu(false));
@@ -54,7 +75,7 @@ const ChatPage = () => {
             )
           )}
         </div>
-
+          {isKeyboardOpen && <p>Keyboard is open!</p>}
       </div>
       <ChatInput />
     </div>
