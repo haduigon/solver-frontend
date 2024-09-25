@@ -72,17 +72,21 @@
 }
 
 .pic {
-  width: 260px;
-  height: 200px;
+  width: fit-content;
+  height: fit-content;
+  max-width: 254px;
+  max-height: 204px;
   border-radius: 50%;
-  object-fit: cover;
+  object-fit: contain;
   
   @include mixins.Tablet {
-    width: 30vw;
+    max-width: 228px;
+    max-height: 182px;
   }
 
   @include mixins.Mobile {
-    width: 25vw;
+    max-width: 204px;
+    max-height: 162px;
   }
 }
 
