@@ -31,6 +31,9 @@ const appSlice = createSlice({
     setNewDialog: (state, action: PayloadAction<boolean>) => {
       state.isNewDialog = action.payload;
     },
+    setDialog: (state, action: PayloadAction<Message[]>) => {
+      state.dialog = action.payload;
+    },
     addMessage: (state, action: PayloadAction<Message>) => {
       state.dialog.push(action.payload);
     },
@@ -43,7 +46,6 @@ const appSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getAnswer.fulfilled, (state, action) => {
       const newR = new Message('response', action.payload);
-      // console.log(action.payload, 'payload in redux')
       state.dialog.push(JSON.parse(JSON.stringify(newR)));
       state.messageIsTyping = false;
     }); 
@@ -54,7 +56,7 @@ const appSlice = createSlice({
       state.history = action.payload;
     });
     builder.addCase(getDialogAsynk.fulfilled, (state, action) => {
-      state.selectedHistory= action.payload;
+      state.selectedHistory = action.payload;
     })
   }
 })
@@ -66,25 +68,24 @@ export const { setResponse } = appSlice.actions;
 export const { addMessage } = appSlice.actions;
 export const { setNewDialog } = appSlice.actions;
 export const { resetState } = appSlice.actions;
+export const { setDialog } = appSlice.actions;
 
 export const getAnswer = createAsyncThunk("app/getResponse", (data: {
   token: string,
   question: string,
   newDialog?: string,
 }) => {
-  // console.log(data, 'data in app features');
   
   return sendMessage(data.token, data.question, data?.newDialog);
 });
 
 export const setAppSettings = createAsyncThunk("app/setSettings", () => {
-  console.log('setSettings');
+  // console.log('setSettings');
   
   return setSettings();
 });
 
 export const getHistory = createAsyncThunk("app/getHistory", () => {
-  // console.log('app thunk');
   
   return getAllHistoryData();
 });
