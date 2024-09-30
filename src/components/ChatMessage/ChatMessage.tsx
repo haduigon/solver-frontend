@@ -9,30 +9,33 @@ type Props = {
 }
 
 const ChatMessage: React.FC<Props> = ({ message = {} as Message }) => {
-  
+
   return (
-    <div className={classNames({
-      [styles.responseBox]: message?.type === 'response',
-      [styles.box]: message?.type === 'request',
-    })}>
-      {message?.type === 'response' && (
-         <div className={`${styles.pandaBox}`}>
-        <img src={pic} alt='panda' />
-      </div>
-     )}
+    <div>
+      {message.date}
       <div className={classNames({
-      [styles.responseMessage]: message?.type === 'response',
-      [styles.message]: message?.type === 'request',
+        [styles.responseBox]: message?.type === 'response',
+        [styles.box]: message?.type === 'request',
       })}>
-        <p className={`${styles.wrap}`}>
-          {message?.body}
-        </p>
+        {message?.type === 'response' && (
+          <div className={`${styles.pandaBox}`}>
+            <img src={pic} alt='panda' />
+          </div>
+        )}
+        <div className={classNames({
+          [styles.responseMessage]: message?.type === 'response',
+          [styles.message]: message?.type === 'request',
+        })}>
+          <p className={`${styles.wrap}`}>
+            {message?.body}
+          </p>
+        </div>
+        {message?.type === 'request' && (
+          <div className={`${styles.userBox}`}>
+            <img src={pic} alt='panda' />
+          </div>
+        )}
       </div>
-      {message?.type === 'request' && (
-         <div className={`${styles.userBox}`}>
-        <img src={pic} alt='panda' />
-      </div>
-     )}
     </div>
   )
 }

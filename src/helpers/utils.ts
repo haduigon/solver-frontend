@@ -14,21 +14,40 @@ export const client = axios.create({
   withCredentials: false,
 });
 
+export const formattedDate = () => {
+  const currentDate = new Date();
+
+  const formattedDate = `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, '0')}-${String(currentDate.getDate()).padStart(2, '0')} ` +
+                      `${String(currentDate.getHours()).padStart(2, '0')}:${String(currentDate.getMinutes()).padStart(2, '0')}:${String(currentDate.getSeconds()).padStart(2, '0')}.` +
+    `${String(currentDate.getMilliseconds()).padStart(3, '0')}000`;
+  
+  return formattedDate;
+} 
+
 export async function sendMessage(token: string, question: string, isDialogNew: string = 'm') {
 
+
+  console.log(formattedDate());
+  
   const res: any = await fetch('https://backend-frontend-solver.onrender.com/home', {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       "authorization": token,
     },
-    body: JSON.stringify({ error: `${isDialogNew}${question}` })
+    body: JSON.stringify({
+      error: `${isDialogNew}${question}`,
+      datetime: formattedDate(),
+    })
   })
  
   const res2 = await res.json();
 
   return res2.solver;
 }
+
+console.log(new Date().toDateString());
+
 
 export async function getAllHistoryData() {
   const token: any = getAuth().currentUser;
@@ -79,6 +98,8 @@ export async function getDialog(id: string) {
     }
   });
 
+  console.log(response.data, 'response data utils');
+  
   return response.data;
 }
 

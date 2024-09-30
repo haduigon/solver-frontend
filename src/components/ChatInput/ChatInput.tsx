@@ -9,7 +9,7 @@ import {
 } from '../../app/hooks';
 import * as appActions from '../../features/app';
 import { Message } from '../../app/classes/Message';
-// import { useDetectNewDialog } from '../../helpers/utils';
+import { formattedDate } from '../../helpers/utils';
 
 const ChatInput = () => {
   const [questionText, setQuestionText] = useState<string>();
@@ -29,7 +29,7 @@ const ChatInput = () => {
       ? 'm'
       : 'a';
 
-    const newM = new Message('request', questionText);
+    const newM = new Message('request', questionText, formattedDate());
 
     dispatch(appActions.addMessage(JSON.parse(JSON.stringify(newM))));
 

@@ -1,6 +1,6 @@
 /* eslint-disable */
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
-import { sendMessage, getAllHistoryData, getDialog, setSettings } from "../helpers/utils";
+import { sendMessage, getAllHistoryData, getDialog, setSettings, formattedDate } from "../helpers/utils";
 import { Message } from "../app/classes/Message";
 import { App } from "../types/types";
 
@@ -45,7 +45,7 @@ const appSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(getAnswer.fulfilled, (state, action) => {
-      const newR = new Message('response', action.payload);
+      const newR = new Message('response', action.payload, formattedDate());
       state.dialog.push(JSON.parse(JSON.stringify(newR)));
       state.messageIsTyping = false;
     }); 

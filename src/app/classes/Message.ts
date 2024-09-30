@@ -9,12 +9,15 @@ export class Message {
   type: string;
   body: string | undefined;
   user: any;
+  date: string;
   constructor(
     type: string,
     body: string | undefined,
+    date: string,
   ) {
     this.type = type;
     this.body = body;
+    this.date = date;
     this.user = auth.currentUser?.email;
     this.id = getId(this.user);    
   }

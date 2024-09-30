@@ -7,6 +7,7 @@ export type Message = {
   type: string,
   body: string | undefined,
   user: string | undefined | null,
+  date: string,
 }
 
 export type Dialog = {

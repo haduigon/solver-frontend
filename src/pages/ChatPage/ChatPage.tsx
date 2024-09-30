@@ -30,8 +30,8 @@ const ChatPage = () => {
   useEffect(() => {
       const newHistory = app.selectedHistory?.map((elem: any) => {
       const arr = [];
-      const req = new Message('request', elem.request);
-      const resp = new Message('response', elem.response);
+      const req = new Message('request', elem.request, elem.date);
+      const resp = new Message('response', elem.response, elem.date);
       arr.push(req);
       arr.push(resp);
          
