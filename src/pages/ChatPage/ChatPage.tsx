@@ -30,19 +30,24 @@ const ChatPage = () => {
   useEffect(() => {
       const newHistory = app.selectedHistory?.map((elem: any) => {
       const arr = [];
-      const req = new Message('request', elem.request, elem.date);
+        const req = new Message('request', elem.request, elem.date);
+        arr.push(req);
       const resp = new Message('response', elem.response, elem.date);
-      arr.push(req);
+      
       arr.push(resp);
          
-      return arr.reverse();
-    })
-    const history2 = newHistory?.flatMap(elem => elem).reverse();
+      return arr;
+      })
+    // console.log(newHistory, 'newhistory');
+    
+    const history2 = newHistory?.flatMap(elem => elem);
+    console.log(history2, 'history2');
+    
     if (history2) {
       dispatch(appActions.setDialog(JSON.parse(JSON.stringify(history2))));
     }
   }, [appState.selectedHistory])
-  console.log(app.dialog);
+  // console.log(app.dialog);
   
   return (
     <div className={`${styles.box} mainText`}>

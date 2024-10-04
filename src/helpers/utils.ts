@@ -46,7 +46,7 @@ export async function sendMessage(token: string, question: string, isDialogNew: 
   return res2.solver;
 }
 
-console.log(new Date().toDateString());
+// console.log(new Date().toDateString());
 
 
 export async function getAllHistoryData() {
@@ -56,6 +56,9 @@ export async function getAllHistoryData() {
       "authorization": token.accessToken,
     }
   })
+
+  // console.log(response.data, 'response data in utils');
+  
 
   return response.data;
 }

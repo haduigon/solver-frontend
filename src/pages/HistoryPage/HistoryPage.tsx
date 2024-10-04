@@ -22,7 +22,7 @@ const HistoryPage = () => {
     
   }, []);
   const navigate = useNavigate();
-  console.log('historypage',  app)
+  // console.log('historypage',  app)
   return (
     <div className={`${styles.box}`}>
       <div className={`${styles.item}`}>

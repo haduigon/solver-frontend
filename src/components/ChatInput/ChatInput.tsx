@@ -23,13 +23,15 @@ const ChatInput = () => {
   }
 
   function requestHandler() {
-    setQuestionText('');
+    // setQuestionText('');
 
     const detect = app.isNewDialog || app.history.length === 0
       ? 'm'
       : 'a';
 
     const newM = new Message('request', questionText, formattedDate());
+
+    setQuestionText('');
 
     dispatch(appActions.addMessage(JSON.parse(JSON.stringify(newM))));
 
@@ -39,7 +41,7 @@ const ChatInput = () => {
       newDialog: detect,
     }));
     // console.log('send question');
-    
+    // setQuestionText('');
   }
   
   return (

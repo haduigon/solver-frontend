@@ -32,7 +32,7 @@ const LoginPage = () => {
 
   const test = useAppSelector(state => state);
 
-  console.log(test, 'state login page')
+  // console.log(test, 'state login page')
 
   const listenAuth = onAuthStateChanged(getAuth(), (user2) => {
     if (user2) {
