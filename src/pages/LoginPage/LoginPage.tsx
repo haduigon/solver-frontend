@@ -30,10 +30,6 @@ const LoginPage = () => {
   const [message, setMessage] = useState<null | string>(null);
   const navigate = useNavigate();
 
-  const test = useAppSelector(state => state);
-
-  // console.log(test, 'state login page')
-
   const listenAuth = onAuthStateChanged(getAuth(), (user2) => {
     if (user2) {
       navigate('/chat');

@@ -10,6 +10,7 @@ import {
 import * as appActions from '../../features/app';
 import { Message } from '../../app/classes/Message';
 import { formattedDate } from '../../helpers/utils';
+import Loader from '../Loader';
 
 const ChatInput = () => {
   const [questionText, setQuestionText] = useState<string>();
@@ -45,7 +46,8 @@ const ChatInput = () => {
   }
   
   return (
-    <div className={`${styles.box}`}>
+    <div className={styles.bigBox}>
+      <div className={`${styles.box}`}>
       <textarea
         placeholder='...'
         className={`${styles.inpt} ${styles.inputField}`}
@@ -54,9 +56,18 @@ const ChatInput = () => {
       >
 
       </textarea>
+      
       <button className={`${styles.box2}`} onClick={requestHandler}>
         <img src={arrow} alt='enter' />
       </button>
+      
+      </div>
+      
+      <div className={styles.resetBox2}>
+        <div className={styles.resetBox}>
+          <Loader rotate={false} />
+        </div>
+      </div>
     </div>
   );
 };

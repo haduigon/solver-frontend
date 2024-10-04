@@ -1,12 +1,25 @@
 import loaderImg from '../../assets/img/Loader.svg';
 import styles from './Loader.module.scss';
+import classNames from 'classnames';
 
-const Loader = () => {
+type Props = {
+  rotate?: boolean
+};
+
+const Loader: React.FC<Props> = ({ rotate = true }) => {
   // const img = '../'
 
   return (
-    <div className={styles.loaderBox}>
-      <img src={loaderImg} alt='loader' className={styles.rotate} />
+    <div className={classNames(styles.resetButton ,{
+      [styles.loaderBox]: rotate
+    })}>
+      <img 
+        src={loaderImg} 
+        alt='loader' 
+        className={classNames({
+          [styles.rotate]: rotate
+        })}
+      />
     </div>
   );
 };

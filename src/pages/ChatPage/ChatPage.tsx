@@ -10,6 +10,7 @@ import {
 } from "react";
 import * as appActions from '../../features/app';
 import { Message } from "../../app/classes/Message";
+// import Loader from "../../components/Loader";
 
 const ChatPage = () => {
   const dispatch = useAppDispatch();
@@ -51,7 +52,7 @@ const ChatPage = () => {
   
   return (
     <div className={`${styles.box} mainText`}>
-
+      {/* <Loader rotate={true} /> */}
       <div className={`${styles.flexBox} mainText`} >
 
         <div style={{
