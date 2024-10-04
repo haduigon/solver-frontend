@@ -54,7 +54,7 @@
 .box2 {
   all: unset;
   background-color: #325F58;
-  height: 8vh;
+  height: 100%;
   border-top-right-radius: 18px;
   border-bottom-right-radius: 18px;
   padding-left: 2%;
@@ -62,9 +62,9 @@
   cursor: pointer;
 }
 
-.resetBox {
+// .resetBox {
   
-}
+// }
 
 .resetBox2 {
   width: 79px;
