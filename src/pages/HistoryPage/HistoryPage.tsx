@@ -18,10 +18,16 @@ const HistoryPage = () => {
 
   useEffect(() => {
     onAuthStateChanged(getAuth(), () => dispatch(appActions.getHistory()));
-    dispatch(appActions.getHistory())
-    
+    dispatch(appActions.getHistory());  
   }, []);
   const navigate = useNavigate();
+
+  function handleDelete(id: string) {
+    console.log('delete smth', id);
+    
+    dispatch(appActions.deleteD(id));
+    dispatch(appActions.getHistory());  
+  }
   // console.log('historypage',  app)
   return (
     <div className={`${styles.box}`}>
@@ -43,6 +49,7 @@ const HistoryPage = () => {
         app.history.map((dialog: any) => 
           <div className={`${styles.item}`} key={dialog.id}>
             <Link to={`/history/${dialog.id}`} className={`menu-text`} onClick={() => dispatch(appActions.getDialogAsynk(dialog.id))}>{dialog.id}</Link>
+            <div onClick={() => handleDelete(dialog.id)} className={`menu-text`}>Delete chat</div>
           </div>
         )
       )}

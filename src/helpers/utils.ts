@@ -46,8 +46,6 @@ export async function sendMessage(token: string, question: string, isDialogNew: 
   return res2.solver;
 }
 
-// console.log(new Date().toDateString());
-
 
 export async function getAllHistoryData() {
   const token: any = getAuth().currentUser;
@@ -56,9 +54,6 @@ export async function getAllHistoryData() {
       "authorization": token.accessToken,
     }
   })
-
-  // console.log(response.data, 'response data in utils');
-  
 
   return response.data;
 }
@@ -112,4 +107,47 @@ export function getId(email: string = '') {
 
   const id = `${email} + ${hash} + ${time}`;
   return id.replaceAll(' ', '-');
+}
+
+export async function deleteDialog(id: string) {
+
+  const token: any = getAuth().currentUser;
+  console.log(id, 'dialogid utils');
+  
+  const token2 = await token?.getIdToken();
+  // console.log(token2);
+  
+    const res: any = await fetch(`https://backend-frontend-solver.onrender.com/history/${id}`, {
+    method: "DELETE",
+    headers: {
+      // "Content-Type": "application/json",
+      "authorization": token2,
+    },
+  })
+ 
+  const res2 = await res.json();
+  console.log(res2, 'data delete utils');
+  
+  return res2.data;
+}
+
+export async function getProfile() {
+
+  const token: any = getAuth().currentUser;
+
+  const token2 = await token?.getIdToken();
+  
+  const res: any = await fetch('https://backend-frontend-solver.onrender.com/current_settings', {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "authorization": token2,
+    }
+  })
+ 
+  const res2 = await res.json();
+
+  console.log(res2, 'uktils, data about user profile');
+  
+  return res2.solver;
 }

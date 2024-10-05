@@ -24,7 +24,7 @@ export type App = {
   messageIsTyping: boolean,
   history: any[],
   selectedHistory: [] | null,
-  isNewDialog: boolean,
+  // isNewDialog: boolean,
 }
 
 export type User = {

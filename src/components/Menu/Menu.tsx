@@ -5,20 +5,22 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import * as appActions from '../../features/app';
 import Logout from '../Logout';
 import { Link } from 'react-router-dom';
+import { logout } from '../../firebase/firebase';
 
 const Menu = () => {
   const dispatch = useAppDispatch();
-  const { showLogout } = useAppSelector(state => state.app)
-  // const app = useAppSelector(state => state.app)
+  const { showLogout } = useAppSelector(state => state.app);
 
   function clickHandler() {
     dispatch(appActions.setShowMenu(false));
-    dispatch(appActions.setShowLogout(false));
   }
   function clickHandler2() {
-    dispatch(appActions.setShowLogout(true));
+    localStorage.clear();
+    sessionStorage.clear();
+    dispatch(appActions.resetState());
+    logout();
   }
-  
+
   return (
     <div className={`${styles.box}`}>
       <div className={`${styles.item}`}>
@@ -26,7 +28,7 @@ const Menu = () => {
         <div className={`${styles.cross}`} onClick={clickHandler}>
           <img src={cross} alt='close' style={{
             display: 'block'
-          }}/>
+          }} />
         </div>
       </div>
 

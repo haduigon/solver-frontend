@@ -3,11 +3,17 @@ import { Link, useNavigate } from 'react-router-dom';
 import styles from './ProfilePage.module.scss';
 import picture from '../../assets/img/backImg.svg';
 import backButton from '../../assets/img/backButton.svg';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import * as appActions from '../../features/app';
+import {
+  useAppDispatch,
+  // useAppSelector
+} from '../../app/hooks';
 
 const ProfilePage = () => {
   const navigate = useNavigate();
   const [userImg, setUserImg] = useState(picture);
+    const dispatch = useAppDispatch();
 
   const handleImgUpload = (e: any) => {
     console.log(e.target, 'imgbuttonworks')
@@ -22,6 +28,10 @@ const ProfilePage = () => {
       reader.readAsDataURL(file);
     }
   }
+
+  useEffect(() => {
+    dispatch(appActions.getUserInfo());
+  }, [])
 
   return (
     <div className={`${styles.box}`}>

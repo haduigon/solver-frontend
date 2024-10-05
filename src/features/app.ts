@@ -1,6 +1,6 @@
 /* eslint-disable */
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
-import { sendMessage, getAllHistoryData, getDialog, setSettings, formattedDate } from "../helpers/utils";
+import { sendMessage, getAllHistoryData, getDialog, setSettings, formattedDate, deleteDialog, getProfile } from "../helpers/utils";
 import { Message } from "../app/classes/Message";
 import { App } from "../types/types";
 
@@ -12,7 +12,7 @@ const initialApp: App = {
   messageIsTyping: false,
   history: [],
   selectedHistory: null,
-  isNewDialog: false
+  // isNewDialog: false
 }
 
 const appSlice = createSlice({
@@ -28,9 +28,9 @@ const appSlice = createSlice({
     setResponse: (state, action: PayloadAction<string>) => {
       state.response = action.payload;
     },
-    setNewDialog: (state, action: PayloadAction<boolean>) => {
-      state.isNewDialog = action.payload;
-    },
+    // setNewDialog: (state, action: PayloadAction<boolean>) => {
+    //   state.isNewDialog = action.payload;
+    // },
     setDialog: (state, action: PayloadAction<Message[]>) => {
       state.dialog = action.payload;
     },
@@ -66,7 +66,7 @@ export const { setShowMenu } = appSlice.actions;
 export const { setShowLogout } = appSlice.actions;
 export const { setResponse } = appSlice.actions;
 export const { addMessage } = appSlice.actions;
-export const { setNewDialog } = appSlice.actions;
+// export const { setNewDialog } = appSlice.actions;
 export const { resetState } = appSlice.actions;
 export const { setDialog } = appSlice.actions;
 
@@ -92,5 +92,13 @@ export const getHistory = createAsyncThunk("app/getHistory", () => {
 
 export const getDialogAsynk = createAsyncThunk("app/getDialog", (id: string) => {
   return getDialog(id);
+});
+
+export const deleteD = createAsyncThunk("app/deleteDialog", (id: string) => {
+  return deleteDialog(id);
+});
+
+export const getUserInfo = createAsyncThunk("app/getProfile", () => {
+  return getProfile();
 });
 
