@@ -23,10 +23,14 @@ const ChatInput = () => {
     setQuestionText(data);
   }
 
+  function resetChat() {
+    dispatch(appActions.setDialog([]));
+  }
+
   function requestHandler() {
     // setQuestionText('');
 
-    const detect = app.isNewDialog || app.history.length === 0
+    const detect = app.dialog.length === 0
       ? 'm'
       : 'a';
 
@@ -63,7 +67,10 @@ const ChatInput = () => {
       
       </div>
       
-      <div className={styles.resetBox2}>
+      <div
+        className={styles.resetBox2}
+        onClick={resetChat}
+      >
         <div className={styles.resetBox}>
           <Loader rotate={false} />
         </div>
