@@ -54,7 +54,8 @@ export async function getAllHistoryData() {
       "authorization": token.accessToken,
     }
   })
-
+  console.log('get history in utils');
+  
   return response.data;
 }
 
@@ -128,7 +129,7 @@ export async function deleteDialog(id: string) {
   const res2 = await res.json();
   console.log(res2, 'data delete utils');
   
-  return res2.data;
+  return id;
 }
 
 export async function getProfile() {

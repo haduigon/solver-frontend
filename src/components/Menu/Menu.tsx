@@ -1,15 +1,18 @@
 /* eslint-disable */
 import styles from './Menu.module.scss';
 import cross from '../../assets/img/cross.svg'
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import {
+  useAppDispatch,
+  // useAppSelector
+} from '../../app/hooks';
 import * as appActions from '../../features/app';
-import Logout from '../Logout';
+// import Logout from '../Logout';
 import { Link } from 'react-router-dom';
 import { logout } from '../../firebase/firebase';
 
 const Menu = () => {
   const dispatch = useAppDispatch();
-  const { showLogout } = useAppSelector(state => state.app);
+  // const { showLogout } = useAppSelector(state => state.app);
 
   function clickHandler() {
     dispatch(appActions.setShowMenu(false));
@@ -53,9 +56,9 @@ const Menu = () => {
           <div className={`${styles.logout__text}`}>Log out</div>
         </div>
       </div>
-      {showLogout && (
+      {/* {showLogout && (
         <Logout />
-      )}
+      )} */}
     </div>
   )
 }

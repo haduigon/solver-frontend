@@ -19,14 +19,15 @@ const HistoryPage = () => {
   useEffect(() => {
     onAuthStateChanged(getAuth(), () => dispatch(appActions.getHistory()));
     dispatch(appActions.getHistory());  
-  }, []);
+  }, [app.history.length]);
   const navigate = useNavigate();
-
+  console.log('render !!');
+  
   function handleDelete(id: string) {
-    console.log('delete smth', id);
+    // console.log('delete smth', id);
     
     dispatch(appActions.deleteD(id));
-    dispatch(appActions.getHistory());  
+    // dispatch(appActions.getHistory());  
   }
   // console.log('historypage',  app)
   return (

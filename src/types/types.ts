@@ -18,7 +18,7 @@ export type Dialog = {
 
 export type App = {
   showMenu: boolean,
-  showLogout: boolean,
+  // showLogout: boolean,
   response: string,
   dialog: Message[],
   messageIsTyping: boolean,

@@ -26,7 +26,7 @@ const Logout = () => {
    }
   
   function cancel222() {
-    dispatch(appActions.setShowLogout(false));
+    // dispatch(appActions.setShowLogout(false));
   }
   
   return (

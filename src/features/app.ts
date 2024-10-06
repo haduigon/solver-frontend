@@ -6,7 +6,7 @@ import { App } from "../types/types";
 
 const initialApp: App = {
   showMenu: false,
-  showLogout: false,
+  // showLogout: false,
   response: '',
   dialog: [],
   messageIsTyping: false,
@@ -22,9 +22,9 @@ const appSlice = createSlice({
     setShowMenu: (state, action: PayloadAction<boolean>) => {
       state.showMenu = action.payload;
     },
-    setShowLogout: (state, action: PayloadAction<boolean>) => {
-      state.showLogout = action.payload;
-    },
+    // setShowLogout: (state, action: PayloadAction<boolean>) => {
+    //   state.showLogout = action.payload;
+    // },
     setResponse: (state, action: PayloadAction<string>) => {
       state.response = action.payload;
     },
@@ -57,13 +57,22 @@ const appSlice = createSlice({
     });
     builder.addCase(getDialogAsynk.fulfilled, (state, action) => {
       state.selectedHistory = action.payload;
-    })
+    });
+    builder.addCase(deleteD.fulfilled, (state, action) => {
+
+      const idToDelete = action.payload;
+
+      state.history = state.history.filter(elem => elem.id !== idToDelete);
+    });
+    // builder.addCase(getDialogAsynk.fulfilled, (state, action) => {
+    //   state.selectedHistory = action.payload;
+    // })
   }
 })
 
 export default appSlice.reducer;
 export const { setShowMenu } = appSlice.actions;
-export const { setShowLogout } = appSlice.actions;
+// export const { setShowLogout } = appSlice.actions;
 export const { setResponse } = appSlice.actions;
 export const { addMessage } = appSlice.actions;
 // export const { setNewDialog } = appSlice.actions;
